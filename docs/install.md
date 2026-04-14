@@ -1,0 +1,64 @@
+---
+id: install
+title: Installation
+---
+
+# Installation
+
+Installing RBG to a Kubernetes Cluster
+
+## Prerequisites
+
+- A Kubernetes cluster with version >= 1.28 is Required, or it will behave unexpectedly.
+- Kubernetes cluster has at least 1 node with 1+ CPUs and 1G of memory available for the RoleBasedGroup controller manager Deployment to run on.
+- The kubectl command-line tool has communication with your cluster.
+
+## Install by kubectl
+
+```bash
+kubectl apply --server-side -f ./deploy/kubectl/manifests.yaml
+```
+
+To wait for RoleBasedGroup controller to be fully available, run:
+
+```bash
+kubectl wait deploy/rbgs-controller-manager -n rbgs-system --for=condition=available --timeout=5m
+```
+
+## Install by Helm
+
+```bash
+helm upgrade --install rbgs deploy/helm/rbgs \
+    --create-namespace \
+    --namespace rbgs-system \
+    --wait
+```
+
+Or use the Makefile shortcut:
+
+```bash
+make helm-deploy
+```
+
+### CRD Upgrader Configuration
+
+| Parameter | Description | Default |
+|-----------|-------------|------|
+| `crdUpgrade.enabled` | Enable CRD Upgrader Job | `true` |
+| `crdUpgrade.repository` | CRD Upgrader image repository | `rolebasedgroup/rbgs-upgrade-crd` |
+| `crdUpgrade.tag` | CRD Upgrader image tag | Same as `image.tag` |
+| `crdUpgrade.ttlSecondsAfterFinished` | Job TTL after completion | `259200` (3 days) |
+
+## Uninstall
+
+To uninstall RoleBasedGroup installed via kubectl:
+
+```bash
+kubectl delete -f ./deploy/kubectl/manifests.yaml
+```
+
+To uninstall RoleBasedGroup installed via Helm:
+
+```bash
+helm uninstall rbgs --namespace rbgs-system
+```
