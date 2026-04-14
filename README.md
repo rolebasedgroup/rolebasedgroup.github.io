@@ -34,6 +34,17 @@ This command generates static content into the `build` directory.
 
 The site is automatically deployed via GitHub Actions when changes are pushed to the `main` branch.
 
+### GitHub Pages Configuration
+
+After merging this PR, configure GitHub Pages in repository settings:
+
+1. Go to **Settings** > **Pages**
+2. Set **Source** to **Deploy from a branch**
+3. Select **gh-pages** branch and **/ (root)** folder
+4. Click **Save**
+
+The GitHub Actions workflow will automatically build and deploy to the `gh-pages` branch.
+
 ## Project Structure
 
 ```
