@@ -1,51 +1,96 @@
 import React from 'react';
+import Link from '@docusaurus/Link';
 
-const SCOPEFeatures = [
+const capabilities = [
   {
-    title: '🔁 Stable',
+    title: 'Multi-Role Orchestration',
     description:
-      'Topology-aware deterministic operations with unique RoleID injection and minimal replacement domain principles.',
-    icon: '🔁',
+      'Define complex topologies with gateway, router, prefill, and decode roles. Use standalonePattern for single-pod instances or leaderWorkerPattern for distributed tensor parallelism.',
+    link: '/docs/features/multiroles',
+    icon: 'M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z',
   },
   {
-    title: '🤝 Coordination',
+    title: 'Exclusive Topology Scheduling',
     description:
-      'Cross-role policy engine supporting deployment pairing, coordinated upgrades, linked recovery, and coordinated scaling.',
-    icon: '🤝',
+      'Pods of different roles are automatically scheduled on different nodes or topology zones using the exclusive-topology annotation for isolation.',
+    link: '/docs/features/exclusive-topology',
+    icon: 'M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z',
   },
   {
-    title: '🧭 Orchestration',
+    title: 'Role Dependencies',
     description:
-      'Defines role dependencies and precise startup sequences. Topology self-aware service discovery - injects complete role topology into Pods.',
-    icon: '🧭',
+      'Define startup ordering with the dependencies field. Backend roles wait for frontend roles to be ready before creation.',
+    link: '/docs/introduction',
+    icon: 'M13 10V3L4 14h7v7l9-11h-7z',
   },
   {
-    title: '⚡ Performance',
+    title: 'Coordinated Updates',
     description:
-      'Topology-aware placement with hardware affinity (GPU-NVLink > PCIe > RDMA > VPC) and role affinity scheduling.',
-    icon: '⚡',
+      'Use CoordinatedPolicy CRD for coordinated rolling updates. maxSkew ensures roles stay within 1% progress difference during updates.',
+    link: '/docs/features/update-strategy',
+    icon: 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15',
   },
   {
-    title: '🧩 Extensible',
+    title: 'Coordinated Scaling',
     description:
-      'Future-proof deployment abstraction using declarative APIs and plugin mechanisms to adapt new architectures in weeks.',
-    icon: '🧩',
+      'HPA integration via scalingAdapter. CoordinatedPolicy with OrderReady progression ensures roles scale together safely.',
+    link: '/docs/features/autoscaler',
+    icon: 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6',
+  },
+  {
+    title: 'Role Templates',
+    description:
+      'Reduce configuration duplication with roleTemplates. Multiple roles can reference shared templates using templateRef.',
+    link: '/docs/introduction',
+    icon: 'M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z',
   },
 ];
 
+function FeatureCard({ title, description, link, icon }) {
+  return (
+    <div className="feature-card">
+      <div className="feature-card__icon">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          width="40"
+          height="40">
+          <path d={icon} />
+        </svg>
+      </div>
+      <h3 className="feature-card__title">{title}</h3>
+      <p className="feature-card__description">{description}</p>
+      <Link to={link} className="feature-card__link">
+        Learn more
+        <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+          <path
+            fillRule="evenodd"
+            d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+            clipRule="evenodd"
+          />
+        </svg>
+      </Link>
+    </div>
+  );
+}
+
 export default function HomepageFeatures(): JSX.Element {
   return (
-    <section className="container margin-vert--xl">
-      <h2 className="text--center margin-bottom--lg">
-        The SCOPE Framework: Five Core Capabilities
-      </h2>
-      <div className="scope-grid">
-        {SCOPEFeatures.map((props, idx) => (
-          <div key={idx} className="feature-card">
-            <div className="feature-card__icon">{props.icon}</div>
-            <div className="feature-card__title">{props.title}</div>
-            <div className="feature-card__description">{props.description}</div>
-          </div>
+    <section className="container homepage-section">
+      <div className="section-header">
+        <h2>Built for Production LLM Serving</h2>
+        <p>
+          Everything you need to run distributed inference at scale,
+          with the simplicity of native Kubernetes APIs (v1alpha2).
+        </p>
+      </div>
+      <div className="capabilities-grid">
+        {capabilities.map((props, idx) => (
+          <FeatureCard key={idx} {...props} />
         ))}
       </div>
     </section>
