@@ -6,6 +6,7 @@ import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import QuickStart from '@site/src/components/QuickStart';
 import DeploymentPatterns from '@site/src/components/DeploymentPatterns';
 import Ecosystem from '@site/src/components/Ecosystem';
+import { useScrollAnimation } from '@site/src/hooks/useScrollAnimation';
 
 import styles from './index.module.css';
 
@@ -86,6 +87,33 @@ spec:
   );
 }
 
+function ArchitectureSection(): JSX.Element {
+  const [sectionRef, isVisible] = useScrollAnimation<HTMLDivElement>();
+
+  return (
+    <section
+      ref={sectionRef}
+      className={`section-light homepage-section section-animate ${isVisible ? 'animate-in' : ''}`}>
+      <div className="container">
+        <div className={styles.sectionHeader}>
+          <h2>How It Works</h2>
+          <p>
+            RBG treats your inference service as a coordinated organism,
+            managing roles, dependencies, and topology as a single unit.
+          </p>
+        </div>
+        <div className="text--center">
+          <img
+            src="https://raw.githubusercontent.com/sgl-project/rbg/main/doc/rbgs-concept.png"
+            alt="RBG Architecture"
+            style={{ maxWidth: '900px', width: '100%' }}
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   return (
@@ -97,24 +125,7 @@ export default function Home(): JSX.Element {
         <QuickStart />
         <HomepageFeatures />
         <DeploymentPatterns />
-        <section className={styles.architectureSection}>
-          <div className="container">
-            <div className={styles.sectionHeader}>
-              <h2>How It Works</h2>
-              <p>
-                RBG treats your inference service as a coordinated organism,
-                managing roles, dependencies, and topology as a single unit.
-              </p>
-            </div>
-            <div className="text--center">
-              <img
-                src="https://raw.githubusercontent.com/sgl-project/rbg/main/doc/rbgs-concept.png"
-                alt="RBG Architecture"
-                style={{ maxWidth: '900px', width: '100%' }}
-              />
-            </div>
-          </div>
-        </section>
+        <ArchitectureSection />
         <Ecosystem />
       </main>
     </Layout>
