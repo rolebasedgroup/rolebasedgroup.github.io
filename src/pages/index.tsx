@@ -129,8 +129,8 @@ export default function Home(): JSX.Element {
         <HomepageFeatures />
         <DeploymentPatterns />
         <ArchitectureSection />
-        <UseCases />
         <Ecosystem />
+        <UseCases />
       </main>
     </Layout>
   );
