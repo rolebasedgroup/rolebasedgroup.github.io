@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
+import { useScrollAnimation } from '@site/src/hooks/useScrollAnimation';
 
 const capabilities = [
   {
@@ -46,10 +47,12 @@ const capabilities = [
   },
 ];
 
-function FeatureCard({ title, description, link, icon }) {
+function FeatureCard({ title, description, link, icon, delay }) {
   return (
-    <div className="feature-card">
-      <div className="feature-card__icon">
+    <div
+      className="feature-card card-animate glow-on-hover"
+      style={{ transitionDelay: `${delay}ms` }}>
+      <div className="feature-card__icon icon-float">
         <svg
           viewBox="0 0 24 24"
           fill="none"
@@ -64,7 +67,7 @@ function FeatureCard({ title, description, link, icon }) {
       </div>
       <h3 className="feature-card__title">{title}</h3>
       <p className="feature-card__description">{description}</p>
-      <Link to={link} className="feature-card__link">
+      <Link to={link} className="feature-card__link link-underline">
         Learn more
         <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
           <path
@@ -79,19 +82,25 @@ function FeatureCard({ title, description, link, icon }) {
 }
 
 export default function HomepageFeatures(): JSX.Element {
+  const [sectionRef, isVisible] = useScrollAnimation<HTMLDivElement>();
+
   return (
-    <section className="container homepage-section">
-      <div className="section-header">
-        <h2>Built for Production LLM Serving</h2>
-        <p>
-          Everything you need to run distributed inference at scale,
-          with the simplicity of native Kubernetes APIs (v1alpha2).
-        </p>
-      </div>
-      <div className="capabilities-grid">
-        {capabilities.map((props, idx) => (
-          <FeatureCard key={idx} {...props} />
-        ))}
+    <section
+      ref={sectionRef}
+      className={`section-light homepage-section section-animate ${isVisible ? 'animate-in' : ''}`}>
+      <div className="container">
+        <div className="section-header">
+          <h2>Built for Production LLM Serving</h2>
+          <p>
+            Everything you need to run distributed inference at scale,
+            with the simplicity of native Kubernetes APIs (v1alpha2).
+          </p>
+        </div>
+        <div className={`capabilities-grid ${isVisible ? 'animate-in' : ''}`}>
+          {capabilities.map((props, idx) => (
+            <FeatureCard key={idx} {...props} delay={idx * 50} />
+          ))}
+        </div>
       </div>
     </section>
   );

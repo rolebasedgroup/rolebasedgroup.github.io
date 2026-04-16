@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Link from '@docusaurus/Link';
 import CodeBlock from '@theme/CodeBlock';
+import { useScrollAnimation } from '@site/src/hooks/useScrollAnimation';
 
 const patterns = [
   {
@@ -216,48 +217,53 @@ spec:
 
 export default function DeploymentPatterns(): JSX.Element {
   const [activePattern, setActivePattern] = useState(patterns[0].id);
+  const [sectionRef, isVisible] = useScrollAnimation<HTMLDivElement>();
 
   const currentPattern = patterns.find((p) => p.id === activePattern)!;
 
   return (
-    <section className="container homepage-section">
-      <div className="section-header">
-        <h2>Deployment Patterns</h2>
-        <p>
-          From single-node development to production-grade disaggregated serving,
-          RBG supports all inference topologies with native Kubernetes APIs.
-        </p>
-      </div>
-      <div className="pattern-tabs">
-        {patterns.map((pattern) => (
-          <button
-            key={pattern.id}
-            className={`pattern-tab ${activePattern === pattern.id ? 'active' : ''}`}
-            onClick={() => setActivePattern(pattern.id)}>
-            {pattern.name}
-          </button>
-        ))}
-      </div>
-      <div className="pattern-content">
-        <div className="pattern-info">
-          <h3>{currentPattern.name}</h3>
-          <p className="pattern-description">{currentPattern.description}</p>
-          <p className="pattern-usecase">
-            <strong>Use case:</strong> {currentPattern.useCase}
+    <section
+      ref={sectionRef}
+      className={`section-white homepage-section section-animate ${isVisible ? 'animate-in' : ''}`}>
+      <div className="container">
+        <div className="section-header">
+          <h2>Deployment Patterns</h2>
+          <p>
+            From single-node development to production-grade disaggregated serving,
+            RBG supports all inference topologies with native Kubernetes APIs.
           </p>
-          <Link to={currentPattern.link} className="pattern-link">
-            View full example
-            <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
-              <path
-                fillRule="evenodd"
-                d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
-                clipRule="evenodd"
-              />
-            </svg>
-          </Link>
         </div>
-        <div className="pattern-code">
-          <CodeBlock language="yaml">{currentPattern.yaml}</CodeBlock>
+        <div className="pattern-tabs">
+          {patterns.map((pattern) => (
+            <button
+              key={pattern.id}
+              className={`pattern-tab ${activePattern === pattern.id ? 'active' : ''}`}
+              onClick={() => setActivePattern(pattern.id)}>
+              {pattern.name}
+            </button>
+          ))}
+        </div>
+        <div className="pattern-content">
+          <div className="pattern-info">
+            <h3>{currentPattern.name}</h3>
+            <p className="pattern-description">{currentPattern.description}</p>
+            <p className="pattern-usecase">
+              <strong>Use case:</strong> {currentPattern.useCase}
+            </p>
+            <Link to={currentPattern.link} className="pattern-link">
+              View full example
+              <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
+                <path
+                  fillRule="evenodd"
+                  d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </Link>
+          </div>
+          <div className="pattern-code">
+            <CodeBlock language="yaml">{currentPattern.yaml}</CodeBlock>
+          </div>
         </div>
       </div>
     </section>
