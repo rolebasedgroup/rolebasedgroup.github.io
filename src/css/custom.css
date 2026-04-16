@@ -730,6 +730,7 @@ body {
   gap: var(--rbg-space-4);
   justify-content: center;
   flex-wrap: wrap;
+  margin-top: var(--rbg-space-8);
 }
 
 .ecosystem-link {
