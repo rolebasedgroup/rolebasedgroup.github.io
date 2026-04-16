@@ -50,9 +50,9 @@ const capabilities = [
 function FeatureCard({ title, description, link, icon, delay }) {
   return (
     <div
-      className="feature-card card-animate"
+      className="feature-card card-animate glow-on-hover"
       style={{ transitionDelay: `${delay}ms` }}>
-      <div className="feature-card__icon">
+      <div className="feature-card__icon icon-float">
         <svg
           viewBox="0 0 24 24"
           fill="none"
@@ -67,7 +67,7 @@ function FeatureCard({ title, description, link, icon, delay }) {
       </div>
       <h3 className="feature-card__title">{title}</h3>
       <p className="feature-card__description">{description}</p>
-      <Link to={link} className="feature-card__link">
+      <Link to={link} className="feature-card__link link-underline">
         Learn more
         <svg viewBox="0 0 20 20" fill="currentColor" width="16" height="16">
           <path

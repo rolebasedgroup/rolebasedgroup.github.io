@@ -972,3 +972,302 @@ pre code {
   margin-top: var(--rbg-space-11);
   margin-bottom: var(--rbg-space-11);
 }
+
+/* ========================================
+   Use Cases Section
+   ======================================== */
+
+.usecases-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--rbg-space-6);
+  margin-top: var(--rbg-space-8);
+}
+
+.usecases-grid .usecase-card {
+  opacity: 0;
+  transform: translateY(20px) scale(0.98);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.usecases-grid.animate-in .usecase-card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+@media screen and (max-width: 768px) {
+  .usecases-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.usecase-card {
+  background: var(--rbg-card-bg);
+  border: 1px solid var(--rbg-card-border);
+  border-radius: var(--rbg-radius-lg);
+  padding: var(--rbg-space-6);
+  position: relative;
+  overflow: hidden;
+}
+
+.usecase-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--ifm-color-primary), var(--rbg-accent));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.usecase-card:hover::before {
+  opacity: 1;
+}
+
+.usecase-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--rbg-card-hover-shadow);
+}
+
+.usecase-card__icon {
+  margin-bottom: var(--rbg-space-4);
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.usecase-card:hover .usecase-card__icon {
+  transform: scale(1.05);
+}
+
+.usecase-card__icon svg {
+  width: 48px;
+  height: 48px;
+  color: var(--ifm-color-primary);
+}
+
+.usecase-card__title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: var(--rbg-space-3);
+  color: var(--ifm-heading-color);
+}
+
+.usecase-card__description {
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.6;
+  margin-bottom: var(--rbg-space-4);
+}
+
+.usecase-card__tags {
+  display: flex;
+  gap: var(--rbg-space-2);
+  flex-wrap: wrap;
+}
+
+.usecase-tag {
+  padding: var(--rbg-space-1) var(--rbg-space-3);
+  background: var(--ifm-color-secondary);
+  border-radius: 100px;
+  font-size: 0.8rem;
+  color: var(--ifm-color-content-secondary);
+  transition: all 0.2s ease;
+}
+
+.usecase-card:hover .usecase-tag {
+  background: var(--ifm-color-primary-lightest);
+  color: var(--ifm-color-primary);
+}
+
+/* ========================================
+   Enhanced Visual Animations
+   ======================================== */
+
+/* Floating animation for icons */
+.icon-float {
+  animation: iconFloat 3s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+/* Pulse animation for important elements */
+.pulse-effect {
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(79, 70, 229, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(79, 70, 229, 0);
+  }
+}
+
+/* Glow effect on hover */
+.glow-on-hover {
+  position: relative;
+}
+
+.glow-on-hover::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(45deg, var(--ifm-color-primary), var(--rbg-accent));
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 0.3s ease;
+  filter: blur(8px);
+}
+
+.glow-on-hover:hover::after {
+  opacity: 0.5;
+}
+
+/* Shimmer effect for loading states */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--ifm-color-secondary) 0%,
+    var(--ifm-background-color) 50%,
+    var(--ifm-color-secondary) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Smooth underline animation for links */
+.link-underline {
+  position: relative;
+}
+
+.link-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--ifm-color-primary), var(--rbg-accent));
+  transition: width 0.3s ease;
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* Scale animation for buttons */
+.button-scale {
+  transition: transform 0.15s ease;
+}
+
+.button-scale:active {
+  transform: scale(0.95);
+}
+
+/* Ripple effect for interactive elements */
+.ripple-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple-effect::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease, height 0.4s ease;
+}
+
+.ripple-effect:active::before {
+  width: 200px;
+  height: 200px;
+}
+
+/* Progress indicator animation */
+.progress-bar {
+  height: 3px;
+  background: var(--ifm-color-secondary);
+  position: relative;
+}
+
+.progress-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 30%;
+  background: linear-gradient(90deg, var(--ifm-color-primary), var(--rbg-accent));
+  animation: progressSlide 2s ease-in-out infinite;
+}
+
+@keyframes progressSlide {
+  0% { left: -30%; }
+  100% { left: 100%; }
+}
+
+/* Magnetic hover effect */
+.magnetic-hover {
+  transition: transform 0.2s ease;
+}
+
+.magnetic-hover:hover {
+  transform: translateX(5px);
+}
+
+/* Counter animation style */
+.counter-animate {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.counter-animate.counting {
+  animation: countUp 0.6s ease-out;
+}
+
+@keyframes countUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Smooth section fade between alternating backgrounds */
+.section-fade-edge {
+  position: relative;
+}
+
+.section-fade-edge::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: linear-gradient(180deg, transparent 0%, var(--ifm-background-color) 100%);
+  pointer-events: none;
+}
+
+[data-theme="dark"] .section-fade-edge::after {
+  background: linear-gradient(180deg, transparent 0%, var(--ifm-background-color) 100%);
+}

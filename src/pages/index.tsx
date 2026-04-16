@@ -5,7 +5,9 @@ import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import QuickStart from '@site/src/components/QuickStart';
 import DeploymentPatterns from '@site/src/components/DeploymentPatterns';
+import UseCases from '@site/src/components/UseCases';
 import Ecosystem from '@site/src/components/Ecosystem';
+import ScrollProgress from '@site/src/components/ScrollProgress';
 import { useScrollAnimation } from '@site/src/hooks/useScrollAnimation';
 
 import styles from './index.module.css';
@@ -28,12 +30,12 @@ function HomepageHeader() {
           </p>
           <div className={styles.heroButtons}>
             <Link
-              className="button button--primary button--lg"
+              className="button button--primary button--lg button-scale"
               to="/docs/quick_start">
               Get Started
             </Link>
             <Link
-              className="button button--outline button--lg"
+              className="button button--outline button--lg button-scale"
               to="https://github.com/sgl-project/rbg">
               <svg
                 viewBox="0 0 24 24"
@@ -120,12 +122,14 @@ export default function Home(): JSX.Element {
     <Layout
       title="Home"
       description="RBG - Kubernetes API for orchestrating distributed AI inference workloads with multi-role collaboration">
+      <ScrollProgress />
       <HomepageHeader />
       <main>
         <QuickStart />
         <HomepageFeatures />
         <DeploymentPatterns />
         <ArchitectureSection />
+        <UseCases />
         <Ecosystem />
       </main>
     </Layout>

@@ -48,3 +48,77 @@ export function useStaggeredAnimation<T extends HTMLElement = HTMLDivElement>(
 ): [React.RefObject<T>, boolean] {
   return useScrollAnimation<T>(threshold);
 }
+
+/**
+ * Hook for animated number counting effect
+ */
+export function useAnimatedCounter(
+  endValue: number,
+  duration: number = 1000,
+  trigger: boolean = true
+): number {
+  const [currentValue, setCurrentValue] = useState(0);
+  const startTimeRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (!trigger) return;
+
+    startTimeRef.current = null;
+    const animate = (timestamp: number) => {
+      if (!startTimeRef.current) startTimeRef.current = timestamp;
+      const progress = Math.min((timestamp - startTimeRef.current) / duration, 1);
+
+      // Ease out cubic for smooth animation
+      const easeOut = 1 - Math.pow(1 - progress, 3);
+      setCurrentValue(Math.floor(endValue * easeOut));
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    requestAnimationFrame(animate);
+  }, [endValue, duration, trigger]);
+
+  return currentValue;
+}
+
+/**
+ * Hook for mouse parallax effect on hover
+ */
+export function useParallax<T extends HTMLElement = HTMLDivElement>(
+  intensity: number = 10
+): [React.RefObject<T>, { x: number; y: number }] {
+  const ref = useRef<T>(null);
+  const [offset, setOffset] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    const element = ref.current;
+    if (!element) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      const rect = element.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+
+      const x = ((e.clientX - centerX) / rect.width) * intensity;
+      const y = ((e.clientY - centerY) / rect.height) * intensity;
+
+      setOffset({ x, y });
+    };
+
+    const handleMouseLeave = () => {
+      setOffset({ x: 0, y: 0 });
+    };
+
+    element.addEventListener('mousemove', handleMouseMove);
+    element.addEventListener('mouseleave', handleMouseLeave);
+
+    return () => {
+      element.removeEventListener('mousemove', handleMouseMove);
+      element.removeEventListener('mouseleave', handleMouseLeave);
+    };
+  }, [intensity]);
+
+  return [ref, offset];
+}
