@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="rss.xsl"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>RBG Blog</title>
+        <link>https://rolebasedgroup.github.io/blog</link>
+        <description>RBG Blog</description>
+        <lastBuildDate>Wed, 01 Apr 2026 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
+        <item>
+            <title><![CDATA[RBG v0.7.0-alpha.2 Released]]></title>
+            <link>https://rolebasedgroup.github.io/blog/2026/04/01/v0.7.0-alpha.2</link>
+            <guid>https://rolebasedgroup.github.io/blog/2026/04/01/v0.7.0-alpha.2</guid>
+            <pubDate>Wed, 01 Apr 2026 00:00:00 GMT</pubDate>
+            <description><![CDATA[We're excited to announce the release of RBG v0.7.0-alpha.2!]]></description>
+            <content:encoded><![CDATA[<p>We're excited to announce the release of RBG v0.7.0-alpha.2!</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="whats-new">What's New<a href="https://rolebasedgroup.github.io/blog/2026/04/01/v0.7.0-alpha.2#whats-new" class="hash-link" aria-label="Direct link to What's New" title="Direct link to What's New">​</a></h2>
+<p>This alpha release includes several improvements and new features. Please check out the <a href="https://github.com/sgl-project/rbg/releases/tag/v0.7.0-alpha.2" target="_blank" rel="noopener noreferrer">release notes</a> for more details.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="getting-started">Getting Started<a href="https://rolebasedgroup.github.io/blog/2026/04/01/v0.7.0-alpha.2#getting-started" class="hash-link" aria-label="Direct link to Getting Started" title="Direct link to Getting Started">​</a></h2>
+<p>Install the latest version:</p>
+<div class="language-bash codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-bash codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">kubectl apply --server-side </span><span class="token parameter variable" style="color:#36acaa">-f</span><span class="token plain"> https://github.com/sgl-project/rbg/releases/download/v0.7.0-alpha.2/manifests.yaml</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="feedback">Feedback<a href="https://rolebasedgroup.github.io/blog/2026/04/01/v0.7.0-alpha.2#feedback" class="hash-link" aria-label="Direct link to Feedback" title="Direct link to Feedback">​</a></h2>
+<p>We welcome your feedback! Please report any issues on <a href="https://github.com/sgl-project/rbg/issues" target="_blank" rel="noopener noreferrer">GitHub</a>.</p>]]></content:encoded>
+            <category>release</category>
+            <category>alpha</category>
+        </item>
+        <item>
+            <title><![CDATA[RBG v0.4.0 Released]]></title>
+            <link>https://rolebasedgroup.github.io/blog/2025/09/23/v0.4.0</link>
+            <guid>https://rolebasedgroup.github.io/blog/2025/09/23/v0.4.0</guid>
+            <pubDate>Tue, 23 Sep 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[We're excited to announce the release of RBG v0.4.0!]]></description>
+            <content:encoded><![CDATA[<p>We're excited to announce the release of RBG v0.4.0!</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="key-features">Key Features<a href="https://rolebasedgroup.github.io/blog/2025/09/23/v0.4.0#key-features" class="hash-link" aria-label="Direct link to Key Features" title="Direct link to Key Features">​</a></h2>
+<p>This release includes:</p>
+<ul>
+<li>Improved multi-role coordination</li>
+<li>Enhanced autoscaling support</li>
+<li>Better failure handling mechanisms</li>
+</ul>
+<p>Check out the <a href="https://github.com/sgl-project/rbg/releases/tag/v0.4.0" target="_blank" rel="noopener noreferrer">release notes</a> for complete details.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="version-compatibility">Version Compatibility<a href="https://rolebasedgroup.github.io/blog/2025/09/23/v0.4.0#version-compatibility" class="hash-link" aria-label="Direct link to Version Compatibility" title="Direct link to Version Compatibility">​</a></h2>
+<table><thead><tr><th style="text-align:center">RBG Version</th><th style="text-align:center">Kubernetes Version</th><th style="text-align:center">LeaderWorkerSet Version</th></tr></thead><tbody><tr><td style="text-align:center">v0.4.0</td><td style="text-align:center">&gt;=v1.28.x</td><td style="text-align:center">&gt;=v0.7.0</td></tr></tbody></table>]]></content:encoded>
+            <category>release</category>
+        </item>
+        <item>
+            <title><![CDATA[Introducing RoleBasedGroup]]></title>
+            <link>https://rolebasedgroup.github.io/blog/2025/08/28/introducing-rbg</link>
+            <guid>https://rolebasedgroup.github.io/blog/2025/08/28/introducing-rbg</guid>
+            <pubDate>Thu, 28 Aug 2025 00:00:00 GMT</pubDate>
+            <description><![CDATA[RoleBasedGroup (RBG) is a Kubernetes API for orchestrating distributed, stateful AI inference workloads.]]></description>
+            <content:encoded><![CDATA[<p>RoleBasedGroup (RBG) is a Kubernetes API for orchestrating distributed, stateful AI inference workloads.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="why-rbg">Why RBG?<a href="https://rolebasedgroup.github.io/blog/2025/08/28/introducing-rbg#why-rbg" class="hash-link" aria-label="Direct link to Why RBG?" title="Direct link to Why RBG?">​</a></h2>
+<p>Traditional Kubernetes primitives are ill-suited for LLM inference services that:</p>
+<ul>
+<li>Run as multi-role topologies (gateway/router/prefill/decode)</li>
+<li>Are performance-sensitive to GPU/network topology</li>
+<li>Require atomic, cross-role operations</li>
+</ul>
+<p>RBG treats an inference service as a <strong>role-based group</strong>, managing it as a single coordinated unit.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="the-scope-framework">The SCOPE Framework<a href="https://rolebasedgroup.github.io/blog/2025/08/28/introducing-rbg#the-scope-framework" class="hash-link" aria-label="Direct link to The SCOPE Framework" title="Direct link to The SCOPE Framework">​</a></h2>
+<p>RBG provides five core capabilities:</p>
+<ul>
+<li><strong>Stable</strong> - Topology-aware deterministic operations</li>
+<li><strong>Coordination</strong> - Cross-role policy engine</li>
+<li><strong>Orchestration</strong> - Role dependencies and startup sequences</li>
+<li><strong>Performance</strong> - Topology-aware placement</li>
+<li><strong>Extensible</strong> - Future-proof deployment abstraction</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="getting-started">Getting Started<a href="https://rolebasedgroup.github.io/blog/2025/08/28/introducing-rbg#getting-started" class="hash-link" aria-label="Direct link to Getting Started" title="Direct link to Getting Started">​</a></h2>
+<p>Check out our <a href="https://rolebasedgroup.github.io/docs/quick_start">Quick Start Guide</a> to begin deploying LLM inference services with RBG.</p>]]></content:encoded>
+            <category>announcement</category>
+        </item>
+    </channel>
+</rss>
