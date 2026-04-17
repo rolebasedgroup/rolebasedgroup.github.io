@@ -30,9 +30,13 @@ function HomepageHeader() {
             LLM Inference Orchestration
           </h1>
           <p className={styles.heroSubtitle}>
-            Production-grade deployment for multi-role AI workloads.
-            Prefill/decode separation, tensor parallelism, and hardware-aware placement
-            — all with a single declarative API (v1alpha2).
+            Production-grade deployment for multi-role AI workloads, orchestrating distributed, stateful inference workloads with seamless role collaboration.
+            <br />
+            <span className={styles.subtitleHighlight}>Any Inference Engine</span> × <span className={styles.subtitleHighlight}>Any Architecture</span>
+            <br />
+            <span className={styles.architectureTags}>PD Disaggregated · EPD Disaggregated · AF Disaggregated · Tensor Parallel</span>
+            <br />
+            All with a single declarative API (v1alpha2).
           </p>
           <div className={styles.heroButtons}>
             <Link
