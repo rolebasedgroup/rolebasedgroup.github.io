@@ -50,7 +50,7 @@ const capabilities = [
 function FeatureCard({ title, description, link, icon, delay }) {
   return (
     <div
-      className="feature-card card-animate glow-on-hover"
+      className="feature-card card-3d neon-glow"
       style={{ transitionDelay: `${delay}ms` }}>
       <div className="feature-card__icon icon-float">
         <svg
@@ -87,10 +87,10 @@ export default function HomepageFeatures(): JSX.Element {
   return (
     <section
       ref={sectionRef}
-      className={`section-light homepage-section section-animate ${isVisible ? 'animate-in' : ''}`}>
+      className={`section-light homepage-section section-animate circuit-pattern ${isVisible ? 'animate-in' : ''}`}>
       <div className="container">
         <div className="section-header">
-          <h2>Built for Production LLM Serving</h2>
+          <h2 className="section-header-tech">Built for Production LLM Serving</h2>
           <p>
             Everything you need to run distributed inference at scale,
             with the simplicity of native Kubernetes APIs (v1alpha2).

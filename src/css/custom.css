@@ -1,6 +1,7 @@
 /**
  * RBG Website Custom Styles
  * Modern, developer-focused design system with Indigo theme
+ * Enhanced with futuristic tech visual effects
  */
 
 /* ========================================
@@ -20,6 +21,12 @@
   /* Accent: Sky blue for CTAs */
   --rbg-accent: #0ea5e9;
   --rbg-accent-hover: #0284c7;
+
+  /* Tech accent colors */
+  --rbg-tech-cyan: #22d3ee;
+  --rbg-tech-purple: #a855f7;
+  --rbg-tech-pink: #ec4899;
+  --rbg-tech-green: #10b981;
 
   /* Semantic colors */
   --ifm-color-success: #10b981;
@@ -1270,4 +1277,658 @@ pre code {
 
 [data-theme="dark"] .section-fade-edge::after {
   background: linear-gradient(180deg, transparent 0%, var(--ifm-background-color) 100%);
+}
+
+/* ========================================
+   Tech Background & Grid Effects
+   ======================================== */
+
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Animated scan line effect */
+.scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--ifm-color-primary), transparent);
+  opacity: 0.3;
+  animation: scanDown 8s linear infinite;
+}
+
+@keyframes scanDown {
+  0% { top: 0; }
+  100% { top: 100%; }
+}
+
+/* Corner decorations */
+.corner-decoration {
+  position: absolute;
+  opacity: 0.6;
+}
+
+.corner-top-left {
+  top: 20px;
+  left: 20px;
+}
+
+.corner-top-right {
+  top: 20px;
+  right: 20px;
+}
+
+.corner-bottom-left {
+  bottom: 20px;
+  left: 20px;
+}
+
+.corner-bottom-right {
+  bottom: 20px;
+  right: 20px;
+}
+
+/* Data flow animation lines */
+.data-flow-line {
+  position: absolute;
+  width: 200px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--rbg-tech-cyan), transparent);
+  opacity: 0.4;
+  animation: dataFlow 3s ease-in-out infinite;
+}
+
+.data-flow-1 {
+  top: 20%;
+  left: 0;
+  animation-delay: 0s;
+}
+
+.data-flow-2 {
+  top: 40%;
+  right: 0;
+  animation-direction: reverse;
+  animation-delay: 1s;
+}
+
+.data-flow-3 {
+  top: 60%;
+  left: 0;
+  animation-delay: 2s;
+}
+
+@keyframes dataFlow {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translateX(calc(100vw + 100%));
+    opacity: 0;
+  }
+}
+
+/* ========================================
+   Neon Glow Effects
+   ======================================== */
+
+.neon-glow {
+  position: relative;
+}
+
+.neon-glow::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  background: linear-gradient(45deg, var(--ifm-color-primary), var(--rbg-accent), var(--rbg-tech-purple));
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  filter: blur(15px);
+  transition: opacity 0.3s ease;
+}
+
+.neon-glow:hover::before {
+  opacity: 0.6;
+}
+
+/* Enhanced glow for text */
+.text-neon-glow {
+  text-shadow:
+    0 0 5px var(--ifm-color-primary),
+    0 0 10px var(--ifm-color-primary),
+    0 0 20px var(--ifm-color-primary);
+}
+
+/* ========================================
+   Holographic Effect
+   ======================================== */
+
+.holographic {
+  position: relative;
+  background: linear-gradient(
+    135deg,
+    rgba(79, 70, 229, 0.1) 0%,
+    rgba(14, 165, 233, 0.1) 25%,
+    rgba(168, 85, 247, 0.1) 50%,
+    rgba(236, 72, 153, 0.1) 75%,
+    rgba(79, 70, 229, 0.1) 100%
+  );
+  background-size: 400% 400%;
+  animation: holographicShift 15s ease infinite;
+}
+
+@keyframes holographicShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* ========================================
+   Terminal/Code Block Enhancements
+   ======================================== */
+
+.terminal-style {
+  background: rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.terminal-style::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  background: rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.terminal-style::after {
+  content: '● ● ●';
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  font-size: 10px;
+  letter-spacing: 4px;
+  color: rgba(99, 102, 241, 0.6);
+}
+
+/* Typing cursor effect */
+.typing-cursor::after {
+  content: '▋';
+  animation: cursorBlink 1s step-end infinite;
+}
+
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ========================================
+   Floating 3D Card Effect
+   ======================================== */
+
+.card-3d {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform 0.3s ease;
+}
+
+.card-3d:hover {
+  transform: translateY(-10px) rotateX(5deg) rotateY(-5deg);
+}
+
+.card-3d::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* ========================================
+   Circuit Board Pattern
+   ======================================== */
+
+.circuit-pattern {
+  position: relative;
+  overflow: hidden;
+}
+
+.circuit-pattern::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath d='M10 10h80v80H10z' fill='none' stroke='%234f46e5' stroke-width='0.5'/%3E%3Ccircle cx='10' cy='10' r='2' fill='%234f46e5'/%3E%3Ccircle cx='90' cy='10' r='2' fill='%234f46e5'/%3E%3Ccircle cx='10' cy='90' r='2' fill='%234f46e5'/%3E%3Ccircle cx='90' cy='90' r='2' fill='%234f46e5'/%3E%3Cpath d='M10 50h30m30 0h20M50 10v30m0 30v20' stroke='%234f46e5' stroke-width='0.5'/%3E%3C/svg%3E");
+  background-size: 100px 100px;
+  pointer-events: none;
+}
+
+/* ========================================
+   Status Indicator Animations
+   ======================================== */
+
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.status-indicator::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--rbg-tech-green);
+  animation: statusPulse 2s ease-in-out infinite;
+}
+
+@keyframes statusPulse {
+  0%, 100% {
+    opacity: 1;
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+  }
+  50% {
+    opacity: 0.8;
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+}
+
+/* ========================================
+   Metric Counter Animation
+   ======================================== */
+
+.metric-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--ifm-color-primary);
+  position: relative;
+}
+
+.metric-value::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ifm-color-primary), var(--rbg-accent));
+  opacity: 0.6;
+}
+
+/* ========================================
+   Enhanced Section Headers
+   ======================================== */
+
+.section-header-tech {
+  position: relative;
+  display: inline-block;
+}
+
+.section-header-tech::before {
+  content: '[';
+  color: var(--ifm-color-primary);
+  opacity: 0.5;
+  margin-right: 8px;
+}
+
+.section-header-tech::after {
+  content: ']';
+  color: var(--rbg-accent);
+  opacity: 0.5;
+  margin-left: 8px;
+}
+
+/* ========================================
+   Particle Background Canvas
+   ======================================== */
+
+.tech-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ========================================
+   Hero Section Tech Enhancements
+   ======================================== */
+
+.heroBanner {
+  position: relative;
+  overflow: hidden;
+}
+
+.heroBanner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(99, 102, 241, 0.03) 2px,
+      rgba(99, 102, 241, 0.03) 4px
+    );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Tech frame around code preview */
+.codePreview {
+  position: relative;
+  border: 2px solid rgba(99, 102, 241, 0.3);
+  box-shadow:
+    0 0 20px rgba(99, 102, 241, 0.2),
+    inset 0 0 30px rgba(0, 0, 0, 0.3);
+}
+
+.codePreview::before,
+.codePreview::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid rgba(99, 102, 241, 0.5);
+}
+
+.codePreview::before {
+  top: -2px;
+  left: -2px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.codePreview::after {
+  bottom: -2px;
+  right: -2px;
+  border-left: none;
+  border-top: none;
+}
+
+/* ========================================
+   Feature Card Tech Enhancements
+   ======================================== */
+
+.feature-card {
+  position: relative;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.feature-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--ifm-color-primary), var(--rbg-accent), var(--rbg-tech-purple));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow:
+    0 20px 40px rgba(79, 70, 229, 0.15),
+    0 0 30px rgba(99, 102, 241, 0.1);
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+.feature-card:hover::before {
+  transform: scaleX(1);
+}
+
+/* Tech icon container */
+.feature-card__icon {
+  position: relative;
+  padding: 10px;
+  background: rgba(99, 102, 241, 0.1);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover .feature-card__icon {
+  background: rgba(99, 102, 241, 0.15);
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+}
+
+/* ========================================
+   Button Tech Enhancements
+   ======================================== */
+
+.button--primary {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--ifm-color-primary), var(--ifm-color-primary-dark));
+  box-shadow:
+    0 4px 15px rgba(79, 70, 229, 0.4),
+    0 0 20px rgba(79, 70, 229, 0.2);
+}
+
+.button--primary::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: rotate(45deg);
+  animation: buttonShine 3s ease-in-out infinite;
+}
+
+@keyframes buttonShine {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) rotate(45deg); }
+}
+
+.button--outline {
+  position: relative;
+  overflow: hidden;
+  border: 2px solid rgba(99, 102, 241, 0.5);
+  background: transparent;
+}
+
+.button--outline::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.button--outline:hover::before {
+  opacity: 1;
+}
+
+/* ========================================
+   Ecosystem Card Tech Enhancements
+   ======================================== */
+
+.ecosystem-card {
+  position: relative;
+  border: 1px solid rgba(99, 102, 241, 0.15);
+  transition: all 0.4s ease;
+}
+
+.ecosystem-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(99, 102, 241, 0.05) 0%,
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: inherit;
+}
+
+.ecosystem-card:hover::before {
+  opacity: 1;
+}
+
+.ecosystem-card:hover {
+  border-color: rgba(99, 102, 241, 0.3);
+  box-shadow: 0 10px 30px rgba(79, 70, 229, 0.1);
+}
+
+/* ========================================
+   Use Case Card Tech Enhancements
+   ======================================== */
+
+.usecase-card {
+  position: relative;
+  border: 1px solid rgba(99, 102, 241, 0.15);
+}
+
+.usecase-card::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ifm-color-primary), var(--rbg-accent));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.usecase-card:hover::before {
+  opacity: 1;
+}
+
+/* ========================================
+   Badge Tech Enhancements
+   ======================================== */
+
+.heroBadge {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(99, 102, 241, 0.4);
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.heroBadge::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  animation: badgeShine 2s ease-in-out infinite;
+}
+
+@keyframes badgeShine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* ========================================
+   Scroll Progress Tech Style
+   ======================================== */
+
+.scroll-progress-tech {
+  height: 3px;
+  background: linear-gradient(90deg, var(--ifm-color-primary), var(--rbg-accent));
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 0 10px rgba(99, 102, 241, 0.5);
+}
+
+/* ========================================
+   Navigation Tech Style
+   ======================================== */
+
+.navbar {
+  border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .navbar {
+  border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.navbar__link {
+  position: relative;
+}
+
+.navbar__link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--ifm-color-primary), var(--rbg-accent));
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.navbar__link:hover::after {
+  width: 80%;
+}
+
+/* ========================================
+   Responsive Tech Effects
+   ======================================== */
+
+@media screen and (max-width: 768px) {
+  .corner-decoration {
+    display: none;
+  }
+
+  .data-flow-line {
+    display: none;
+  }
+
+  .scan-line {
+    animation: scanDown 4s linear infinite;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .card-3d:hover {
+    transform: translateY(-4px);
+  }
 }

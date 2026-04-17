@@ -8,6 +8,8 @@ import DeploymentPatterns from '@site/src/components/DeploymentPatterns';
 import UseCases from '@site/src/components/UseCases';
 import Ecosystem from '@site/src/components/Ecosystem';
 import ScrollProgress from '@site/src/components/ScrollProgress';
+import TechBackground from '@site/src/components/TechBackground';
+import GridOverlay from '@site/src/components/GridOverlay';
 import { useScrollAnimation } from '@site/src/hooks/useScrollAnimation';
 
 import styles from './index.module.css';
@@ -16,6 +18,7 @@ function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <header className={styles.heroBanner}>
+      <TechBackground />
       <div className="container">
         <div className={styles.heroContent}>
           <h1 className={styles.heroTitle}>
@@ -30,7 +33,7 @@ function HomepageHeader() {
           </p>
           <div className={styles.heroButtons}>
             <Link
-              className="button button--primary button--lg button-scale"
+              className="button button--primary button--lg button-scale neon-glow"
               to="/docs/quick_start">
               Get Started
             </Link>
@@ -49,13 +52,13 @@ function HomepageHeader() {
             </Link>
           </div>
           <div className={styles.heroBadges}>
-            <span className={styles.heroBadge}>v1alpha2 API</span>
+            <span className={`${styles.heroBadge} typing-cursor`}>v1alpha2 API</span>
             <span className={styles.heroBadge}>Apache 2.0</span>
             <span className={styles.heroBadge}>Kubernetes 1.28+</span>
           </div>
         </div>
         <div className={styles.heroPreview}>
-          <div className={styles.codePreview}>
+          <div className={`${styles.codePreview} terminal-style`}>
             <div className={styles.codeHeader}>
               <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" style={{ marginRight: '8px' }}>
                 <path d="M14.23 12.004a2.246 2.246 0 0 1-2.235 2.245 2.246 2.246 0 0 1-2.245-2.245 2.246 2.246 0 0 1 2.245-2.244c.041 0 .08.003.12.01a1.76 1.76 0 0 0 1.82 1.724 1.76 1.76 0 0 0 1.724-1.82 2.246 2.246 0 0 1 2.235 2.245zm-4.47 0a2.246 2.246 0 0 0 2.245 2.244 2.246 2.246 0 0 0 2.245-2.244 2.246 2.246 0 0 0-2.245-2.245c-.04 0-.08.003-.12.01a1.76 1.76 0 0 1-1.82-1.724 1.76 1.76 0 0 1-1.724 1.82 2.246 2.246 0 0 0-2.235 2.245zm7.16 0a2.246 2.246 0 0 1-2.235 2.245 2.246 2.246 0 0 1-2.245-2.245 2.246 2.246 0 0 1 2.245-2.244c.04 0 .08.003.12.01a1.76 1.76 0 0 0 1.82 1.724 1.76 1.76 0 0 0 1.724-1.82 2.246 2.246 0 0 1 2.235 2.245z" />
@@ -95,10 +98,10 @@ function ArchitectureSection(): JSX.Element {
   return (
     <section
       ref={sectionRef}
-      className={`section-light homepage-section section-animate ${isVisible ? 'animate-in' : ''}`}>
+      className={`section-light homepage-section section-animate circuit-pattern ${isVisible ? 'animate-in' : ''}`}>
       <div className="container">
         <div className={styles.sectionHeader}>
-          <h2>How It Works</h2>
+          <h2 className="section-header-tech">How It Works</h2>
           <p>
             RBG treats your inference service as a coordinated organism,
             managing roles, dependencies, and topology as a single unit.
@@ -109,6 +112,7 @@ function ArchitectureSection(): JSX.Element {
             src="https://raw.githubusercontent.com/sgl-project/rbg/main/doc/rbgs-concept.png"
             alt="RBG Architecture"
             style={{ maxWidth: '900px', width: '100%' }}
+            className="card-3d"
           />
         </div>
       </div>
