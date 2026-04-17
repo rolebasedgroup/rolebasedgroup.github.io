@@ -2363,3 +2363,302 @@ pre code {
     max-width: 280px;
   }
 }
+
+/* ========================================
+   Expandable Ecosystem Card Styles
+   ======================================== */
+
+.ecosystem-grid-expandable {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--rbg-space-6);
+  margin-top: var(--rbg-space-8);
+}
+
+@media screen and (max-width: 996px) {
+  .ecosystem-grid-expandable {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .ecosystem-grid-expandable {
+    grid-template-columns: 1fr;
+  }
+}
+
+.ecosystem-card-expandable {
+  position: relative;
+  border-radius: var(--rbg-radius-lg);
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ecosystem-card-expandable.expanded {
+  z-index: 10;
+}
+
+.ecosystem-card-base {
+  background: var(--rbg-card-bg);
+  border: 1px solid var(--rbg-card-border);
+  border-radius: var(--rbg-radius-lg);
+  padding: var(--rbg-space-6);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.ecosystem-card-expandable:hover .ecosystem-card-base {
+  border-color: rgba(99, 102, 241, 0.3);
+  transform: translateY(-4px);
+  box-shadow: var(--rbg-card-hover-shadow);
+}
+
+.expand-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--rbg-space-2);
+  margin-top: var(--rbg-space-4);
+  font-size: 0.85rem;
+  color: var(--ifm-color-content-secondary);
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+}
+
+.ecosystem-card-expandable:hover .expand-hint {
+  opacity: 1;
+}
+
+/* Expanded Panel */
+.ecosystem-card-expanded {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: var(--rbg-card-bg);
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-top: none;
+  border-radius: 0 0 var(--rbg-radius-lg) var(--rbg-radius-lg);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+  opacity: 0;
+  z-index: 5;
+}
+
+.ecosystem-card-expandable.expanded .ecosystem-card-expanded {
+  max-height: 400px;
+  opacity: 1;
+}
+
+.expanded-header {
+  padding: var(--rbg-space-3) var(--rbg-space-4);
+  background: rgba(99, 102, 241, 0.05);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.1);
+}
+
+.expanded-tabs {
+  display: flex;
+  gap: var(--rbg-space-2);
+}
+
+.expanded-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--rbg-space-2);
+  padding: var(--rbg-space-2) var(--rbg-space-4);
+  background: transparent;
+  border: 1px solid var(--rbg-card-border);
+  border-radius: var(--rbg-radius-sm);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ifm-color-content-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.expanded-tab:hover {
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+}
+
+.expanded-tab.active {
+  background: var(--ifm-color-primary);
+  border-color: var(--ifm-color-primary);
+  color: white;
+}
+
+.expanded-content {
+  padding: var(--rbg-space-4);
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Architecture Diagram Panel */
+.architecture-diagram-panel {
+  animation: fadeInContent 0.3s ease;
+}
+
+@keyframes fadeInContent {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.diagram-flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--rbg-space-2);
+  padding: var(--rbg-space-4);
+  flex-wrap: wrap;
+}
+
+.diagram-node {
+  display: flex;
+  align-items: center;
+  gap: var(--rbg-space-2);
+}
+
+.node-box {
+  padding: var(--rbg-space-2) var(--rbg-space-4);
+  background: rgba(99, 102, 241, 0.1);
+  border: 2px solid;
+  border-radius: var(--rbg-radius-sm);
+  font-size: 0.85rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.node-arrow {
+  color: var(--ifm-color-primary);
+  opacity: 0.6;
+}
+
+.diagram-features {
+  display: flex;
+  gap: var(--rbg-space-2);
+  justify-content: center;
+  margin-top: var(--rbg-space-4);
+  flex-wrap: wrap;
+}
+
+.feature-tag {
+  padding: var(--rbg-space-1) var(--rbg-space-3);
+  background: transparent;
+  border: 1px solid;
+  border-radius: 100px;
+  font-size: 0.8rem;
+  color: var(--ifm-color-content);
+}
+
+/* YAML Preview Panel */
+.yaml-preview-panel {
+  animation: fadeInContent 0.3s ease;
+}
+
+.yaml-header {
+  display: flex;
+  align-items: center;
+  gap: var(--rbg-space-3);
+  padding: var(--rbg-space-2) var(--rbg-space-3);
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: var(--rbg-radius-sm) var(--rbg-radius-sm) 0 0;
+  border-bottom: 1px solid var(--rbg-card-border);
+}
+
+[data-theme="dark"] .yaml-header {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.yaml-header-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.yaml-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.yaml-dot.red {
+  background: #ff5f56;
+}
+
+.yaml-dot.yellow {
+  background: #ffbd2e;
+}
+
+.yaml-dot.green {
+  background: #27c93f;
+}
+
+.yaml-title {
+  font-size: 0.85rem;
+  color: var(--ifm-color-content-secondary);
+  font-family: var(--ifm-font-family-monospace);
+}
+
+.yaml-code {
+  background: var(--ifm-pre-background);
+  padding: var(--rbg-space-4);
+  border-radius: 0 0 var(--rbg-radius-sm) var(--rbg-radius-sm);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  overflow-x: auto;
+  max-height: 250px;
+}
+
+.yaml-code code {
+  background: transparent;
+  color: var(--ifm-pre-color);
+}
+
+/* Expandable card responsive */
+@media screen and (max-width: 768px) {
+  .ecosystem-card-expandable.expanded {
+    position: static;
+  }
+
+  .ecosystem-card-expanded {
+    position: static;
+    max-height: none;
+    border-top: 1px solid rgba(99, 102, 241, 0.3);
+    border-radius: 0 0 var(--rbg-radius-lg) var(--rbg-radius-lg);
+  }
+
+  .ecosystem-card-expandable.expanded .ecosystem-card-expanded {
+    max-height: none;
+  }
+
+  .diagram-flow {
+    flex-direction: column;
+  }
+
+  .node-arrow {
+    transform: rotate(90deg);
+  }
+}
+
+/* ========================================
+   Hero Button Adjustments (4 buttons)
+   ======================================== */
+
+@media screen and (max-width: 768px) {
+  .heroButtons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .heroButtons .button {
+    width: 100%;
+    max-width: 280px;
+  }
+}

@@ -44,7 +44,7 @@ export default function HowToContribute(): JSX.Element {
   return (
     <section
       ref={sectionRef}
-      className={`section-gradient-top homepage-section section-animate ${isVisible ? 'animate-in' : ''}`}>
+      className={`section-white homepage-section section-animate ${isVisible ? 'animate-in' : ''}`}>
       <div className="container">
         <div className="contribute-header">
           <h2 className="section-header-tech">How to Contribute</h2>
