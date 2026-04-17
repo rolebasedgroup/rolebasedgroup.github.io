@@ -319,7 +319,7 @@ export default function Ecosystem(): JSX.Element {
   return (
     <section
       ref={sectionRef}
-      className={`section-white homepage-section section-animate circuit-pattern ${isVisible ? 'animate-in' : ''}`}
+      className={`section-light homepage-section section-animate circuit-pattern ${isVisible ? 'animate-in' : ''}`}
     >
       <div className="container">
         <div className="section-header">

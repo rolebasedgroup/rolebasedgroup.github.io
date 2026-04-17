@@ -11,6 +11,7 @@ import ScrollProgress from '@site/src/components/ScrollProgress';
 import TechBackground from '@site/src/components/TechBackground';
 import ArchitectureCarousel from '@site/src/components/ArchitectureCarousel';
 import HowToContribute from '@site/src/components/HowToContribute';
+import RBGInACKStack from '@site/src/components/RBGInACKStack';
 import { useScrollAnimation } from '@site/src/hooks/useScrollAnimation';
 
 import styles from './index.module.css';
@@ -148,6 +149,7 @@ export default function Home(): JSX.Element {
         <QuickStart />
         <DeploymentPatterns />
         <ArchitectureCarousel />
+        <RBGInACKStack />
         <UseCases />
         <HowToContribute />
       </main>

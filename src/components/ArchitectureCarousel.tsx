@@ -189,7 +189,7 @@ export default function ArchitectureCarousel(): JSX.Element {
   return (
     <section
       ref={sectionRef}
-      className={`section-light homepage-section section-animate circuit-pattern ${isVisible ? 'animate-in' : ''}`}>
+      className={`section-white homepage-section section-animate circuit-pattern ${isVisible ? 'animate-in' : ''}`}>
       <div className="container">
         <div className="carousel-header">
           <h2 className="section-header-tech">How It Works</h2>
