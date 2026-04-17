@@ -87,7 +87,7 @@ export default function HomepageFeatures(): JSX.Element {
   return (
     <section
       ref={sectionRef}
-      className={`section-light homepage-section section-animate circuit-pattern ${isVisible ? 'animate-in' : ''}`}>
+      className={`section-white homepage-section section-animate ${isVisible ? 'animate-in' : ''}`}>
       <div className="container">
         <div className="section-header">
           <h2 className="section-header-tech">Built for Production LLM Serving</h2>

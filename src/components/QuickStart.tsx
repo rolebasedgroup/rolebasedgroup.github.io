@@ -23,7 +23,7 @@ export default function QuickStart(): JSX.Element {
   return (
     <section
       ref={sectionRef}
-      className={`section-white homepage-section section-animate ${isVisible ? 'animate-in' : ''}`}>
+      className={`section-light homepage-section section-animate ${isVisible ? 'animate-in' : ''}`}>
       <div className="container">
         <div className="section-header">
           <h2>Get Started in Minutes</h2>

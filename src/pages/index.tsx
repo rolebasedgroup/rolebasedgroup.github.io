@@ -126,8 +126,8 @@ export default function Home(): JSX.Element {
       <ScrollProgress />
       <HomepageHeader />
       <main>
-        <QuickStart />
         <HomepageFeatures />
+        <QuickStart />
         <DeploymentPatterns />
         <ArchitectureCarousel />
         <Ecosystem />
