@@ -8,6 +8,9 @@ import DeploymentPatterns from '@site/src/components/DeploymentPatterns';
 import UseCases from '@site/src/components/UseCases';
 import Ecosystem from '@site/src/components/Ecosystem';
 import ScrollProgress from '@site/src/components/ScrollProgress';
+import TechBackground from '@site/src/components/TechBackground';
+import ArchitectureCarousel from '@site/src/components/ArchitectureCarousel';
+import HowToContribute from '@site/src/components/HowToContribute';
 import { useScrollAnimation } from '@site/src/hooks/useScrollAnimation';
 
 import styles from './index.module.css';
@@ -16,6 +19,7 @@ function HomepageHeader() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <header className={styles.heroBanner}>
+      <TechBackground />
       <div className="container">
         <div className={styles.heroContent}>
           <h1 className={styles.heroTitle}>
@@ -30,7 +34,7 @@ function HomepageHeader() {
           </p>
           <div className={styles.heroButtons}>
             <Link
-              className="button button--primary button--lg button-scale"
+              className="button button--primary button--lg button-scale neon-glow"
               to="/docs/quick_start">
               Get Started
             </Link>
@@ -47,6 +51,22 @@ function HomepageHeader() {
               </svg>
               GitHub
             </Link>
+            <Link
+              className="button button--outline button--lg button-scale"
+              to="https://sgl-fru7574.slack.com/archives/C098X0LQZV5">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" style={{ marginRight: '8px' }}>
+                <path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zm1.271 0a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zm0 1.271a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zm10.124 2.521a2.528 2.528 0 0 1 2.52-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.52V8.834zm-1.271 0a2.528 2.528 0 0 1-2.521 2.521 2.528 2.528 0 0 1-2.521-2.521V2.522A2.528 2.528 0 0 1 15.166 0a2.528 2.528 0 0 1 2.521 2.522v6.312zm-2.521 10.124a2.528 2.528 0 0 1 2.521-2.521 2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.522h-2.521v-2.522zm0-1.271a2.528 2.528 0 0 1-2.521-2.521 2.528 2.528 0 0 1 2.521-2.522h6.313A2.528 2.528 0 0 1 24 15.166a2.528 2.528 0 0 1-2.522 2.521h-6.313z" />
+              </svg>
+              Join Slack
+            </Link>
+            <Link
+              className="button button--outline button--lg button-scale"
+              to="https://qr.dingtalk.com/action/joingroup?code=v1,k1,groupCode160490021178">
+              <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" style={{ marginRight: '8px' }}>
+                <path d="M4 4h4v4H4V4zm12 0h4v4h-4V4zM4 16h4v4H4v-4zm12 0h4v4h-4v-4zm-6-6h4v4h-4v-4zm-2 0H4v4h4v-4zm12 0h-4v4h4v-4zM8 4h2v2H8V4zm6 0h2v2h-2V4zM4 10h2v2H4v-2zm14 0h2v2h-2v-2zM4 18h2v2H4v-2zm14 0h2v2h-2v-2z" />
+              </svg>
+              Join DingTalk
+            </Link>
           </div>
           <div className={styles.heroBadges}>
             <span className={styles.heroBadge}>v1alpha2 API</span>
@@ -57,10 +77,12 @@ function HomepageHeader() {
         <div className={styles.heroPreview}>
           <div className={styles.codePreview}>
             <div className={styles.codeHeader}>
-              <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16" style={{ marginRight: '8px' }}>
-                <path d="M14.23 12.004a2.246 2.246 0 0 1-2.235 2.245 2.246 2.246 0 0 1-2.245-2.245 2.246 2.246 0 0 1 2.245-2.244c.041 0 .08.003.12.01a1.76 1.76 0 0 0 1.82 1.724 1.76 1.76 0 0 0 1.724-1.82 2.246 2.246 0 0 1 2.235 2.245zm-4.47 0a2.246 2.246 0 0 0 2.245 2.244 2.246 2.246 0 0 0 2.245-2.244 2.246 2.246 0 0 0-2.245-2.245c-.04 0-.08.003-.12.01a1.76 1.76 0 0 1-1.82-1.724 1.76 1.76 0 0 1-1.724 1.82 2.246 2.246 0 0 0-2.235 2.245zm7.16 0a2.246 2.246 0 0 1-2.235 2.245 2.246 2.246 0 0 1-2.245-2.245 2.246 2.246 0 0 1 2.245-2.244c.04 0 .08.003.12.01a1.76 1.76 0 0 0 1.82 1.724 1.76 1.76 0 0 0 1.724-1.82 2.246 2.246 0 0 1 2.235 2.245z" />
-              </svg>
-              RoleBasedGroup.yaml
+              <div className={styles.codeHeaderDots}>
+                <span className={styles.dotRed}></span>
+                <span className={styles.dotYellow}></span>
+                <span className={styles.dotGreen}></span>
+              </div>
+              <span className={styles.codeHeaderTitle}>RoleBasedGroup.yaml</span>
             </div>
             <pre className={styles.codeBlock}>
               <code>{`apiVersion: workloads.x-k8s.io/v1alpha2
@@ -89,33 +111,6 @@ spec:
   );
 }
 
-function ArchitectureSection(): JSX.Element {
-  const [sectionRef, isVisible] = useScrollAnimation<HTMLDivElement>();
-
-  return (
-    <section
-      ref={sectionRef}
-      className={`section-light homepage-section section-animate ${isVisible ? 'animate-in' : ''}`}>
-      <div className="container">
-        <div className={styles.sectionHeader}>
-          <h2>How It Works</h2>
-          <p>
-            RBG treats your inference service as a coordinated organism,
-            managing roles, dependencies, and topology as a single unit.
-          </p>
-        </div>
-        <div className="text--center">
-          <img
-            src="https://raw.githubusercontent.com/sgl-project/rbg/main/doc/rbgs-concept.png"
-            alt="RBG Architecture"
-            style={{ maxWidth: '900px', width: '100%' }}
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export default function Home(): JSX.Element {
   const { siteConfig } = useDocusaurusContext();
   return (
@@ -128,9 +123,10 @@ export default function Home(): JSX.Element {
         <QuickStart />
         <HomepageFeatures />
         <DeploymentPatterns />
-        <ArchitectureSection />
+        <ArchitectureCarousel />
         <Ecosystem />
         <UseCases />
+        <HowToContribute />
       </main>
     </Layout>
   );

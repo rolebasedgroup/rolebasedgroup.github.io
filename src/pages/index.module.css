@@ -20,9 +20,26 @@
   position: absolute;
   inset: 0;
   background-image:
-    radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.2) 0%, transparent 40%),
-    radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.15) 0%, transparent 40%);
+    radial-gradient(circle at 20% 80%, rgba(99, 102, 241, 0.25) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.2) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.15) 0%, transparent 60%);
   pointer-events: none;
+}
+
+/* Tech-style scanlines overlay */
+.heroBanner::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(99, 102, 241, 0.02) 2px,
+    rgba(99, 102, 241, 0.02) 4px
+  );
+  pointer-events: none;
+  z-index: 2;
 }
 
 .heroBanner .container {
@@ -44,7 +61,26 @@
   line-height: 1.15;
   margin-bottom: var(--rbg-space-5);
   color: #ffffff;
-  animation: fadeInUp 0.6s ease-out;
+  animation: fadeInUp 0.6s ease-out, titleGlow 3s ease-in-out infinite;
+  text-shadow:
+    0 0 10px rgba(99, 102, 241, 0.3),
+    0 0 20px rgba(99, 102, 241, 0.2),
+    0 0 30px rgba(99, 102, 241, 0.1);
+}
+
+@keyframes titleGlow {
+  0%, 100% {
+    text-shadow:
+      0 0 10px rgba(99, 102, 241, 0.3),
+      0 0 20px rgba(99, 102, 241, 0.2),
+      0 0 30px rgba(99, 102, 241, 0.1);
+  }
+  50% {
+    text-shadow:
+      0 0 15px rgba(99, 102, 241, 0.4),
+      0 0 25px rgba(99, 102, 241, 0.3),
+      0 0 35px rgba(99, 102, 241, 0.2);
+  }
 }
 
 .heroSubtitle {
@@ -90,21 +126,82 @@
 }
 
 .codePreview {
-  background: rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(99, 102, 241, 0.4);
   border-radius: 12px;
   overflow: hidden;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
+  position: relative;
+  box-shadow:
+    0 0 30px rgba(99, 102, 241, 0.2),
+    inset 0 0 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Tech frame corners */
+.codePreview::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 25px;
+  height: 25px;
+  border-top: 2px solid var(--rbg-tech-cyan);
+  border-left: 2px solid var(--rbg-tech-cyan);
+  opacity: 0.7;
+}
+
+.codePreview::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 25px;
+  height: 25px;
+  border-bottom: 2px solid var(--rbg-tech-purple);
+  border-right: 2px solid var(--rbg-tech-purple);
+  opacity: 0.7;
 }
 
 .codeHeader {
   padding: var(--rbg-space-3) var(--rbg-space-4);
-  background: rgba(0, 0, 0, 0.2);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.3);
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.8);
   display: flex;
   align-items: center;
+  gap: var(--rbg-space-3);
+}
+
+.codeHeaderDots {
+  display: flex;
+  gap: 6px;
+}
+
+.dotRed {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff5f56;
+}
+
+.dotYellow {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ffbd2e;
+}
+
+.dotGreen {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #27c93f;
+}
+
+.codeHeaderTitle {
+  font-family: var(--ifm-font-family-monospace);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .codeHeaderIcon {
