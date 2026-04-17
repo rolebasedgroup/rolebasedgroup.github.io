@@ -21,8 +21,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 25
-      - name: Install npm 11.12.1
-        run: npm install -g npm@11.12.1
+      - name: Install npm 10
+        run: npm install -g npm@10
       - name: Install dependencies
         run: npm install
       - name: Print npm logs on failure
