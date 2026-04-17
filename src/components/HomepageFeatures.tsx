@@ -18,10 +18,10 @@ const capabilities = [
     icon: 'M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z',
   },
   {
-    title: 'Role Dependencies',
+    title: 'Inplace Update',
     description:
-      'Define startup ordering with the dependencies field. Backend roles wait for frontend roles to be ready before creation.',
-    link: '/docs/introduction',
+      'Efficient inplace update mechanism that minimizes disruption during configuration changes. Update pod specifications without recreating entire role groups.',
+    link: '/docs/features/update-strategy',
     icon: 'M13 10V3L4 14h7v7l9-11h-7z',
   },
   {
@@ -32,16 +32,16 @@ const capabilities = [
     icon: 'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15',
   },
   {
-    title: 'Coordinated Scaling',
+    title: 'Independently AutoScaling',
     description:
-      'HPA integration via scalingAdapter. CoordinatedPolicy with OrderReady progression ensures roles scale together safely.',
+      'Each role can scale independently based on its own metrics. Flexible HPA integration via scalingAdapter for per-role autoscaling policies.',
     link: '/docs/features/autoscaler',
     icon: 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6',
   },
   {
-    title: 'Role Templates',
+    title: 'Pre-Warmup',
     description:
-      'Reduce configuration duplication with roleTemplates. Multiple roles can reference shared templates using templateRef.',
+      'Pre-warmup mechanism for faster service initialization. Roles can be pre-provisioned and warmed up before serving requests, reducing cold start latency.',
     link: '/docs/introduction',
     icon: 'M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z',
   },
@@ -87,7 +87,7 @@ export default function HomepageFeatures(): JSX.Element {
   return (
     <section
       ref={sectionRef}
-      className={`section-light homepage-section section-animate circuit-pattern ${isVisible ? 'animate-in' : ''}`}>
+      className={`section-white homepage-section section-animate ${isVisible ? 'animate-in' : ''}`}>
       <div className="container">
         <div className="section-header">
           <h2 className="section-header-tech">Built for Production LLM Serving</h2>

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Link from '@docusaurus/Link';
-import CodeBlock from '@theme/CodeBlock';
 import { useScrollAnimation } from '@site/src/hooks/useScrollAnimation';
 
 const patterns = [
@@ -224,7 +223,7 @@ export default function DeploymentPatterns(): JSX.Element {
   return (
     <section
       ref={sectionRef}
-      className={`section-white homepage-section section-animate ${isVisible ? 'animate-in' : ''}`}>
+      className={`section-light homepage-section section-animate ${isVisible ? 'animate-in' : ''}`}>
       <div className="container">
         <div className="section-header">
           <h2>Deployment Patterns</h2>
@@ -262,7 +261,17 @@ export default function DeploymentPatterns(): JSX.Element {
             </Link>
           </div>
           <div className="pattern-code">
-            <CodeBlock language="yaml">{currentPattern.yaml}</CodeBlock>
+            <div className="pattern-code-header">
+              <div className="pattern-code-dots">
+                <span className="pattern-dot red"></span>
+                <span className="pattern-dot yellow"></span>
+                <span className="pattern-dot green"></span>
+              </div>
+              <span className="pattern-code-title">{currentPattern.name}.yaml</span>
+            </div>
+            <pre className="pattern-code-block">
+              <code>{currentPattern.yaml}</code>
+            </pre>
           </div>
         </div>
       </div>

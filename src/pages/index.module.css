@@ -83,12 +83,48 @@
   }
 }
 
+.projectName {
+  display: inline-block;
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 50%, #0ea5e9 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--rbg-space-2);
+  animation: projectNameShine 4s ease-in-out infinite;
+}
+
+@keyframes projectNameShine {
+  0%, 100% {
+    background-position: 0% 50%;
+    filter: brightness(1);
+  }
+  50% {
+    background-position: 100% 50%;
+    filter: brightness(1.1);
+  }
+}
+
 .heroSubtitle {
   font-size: clamp(1.1rem, 2vw, 1.25rem);
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: var(--rbg-space-7);
   animation: fadeInUp 0.6s ease-out 0.1s both;
+}
+
+.subtitleHighlight {
+  color: var(--rbg-accent);
+  font-weight: 600;
+}
+
+.architectureTags {
+  display: inline-block;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.75);
+  letter-spacing: 0.5px;
 }
 
 .heroButtons {
@@ -123,6 +159,91 @@
 
 .heroPreview {
   animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+
+.previewGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--rbg-space-5);
+  align-items: stretch;
+}
+
+.architectureDiagram {
+  display: flex;
+  flex-direction: column;
+}
+
+.diagramFrame {
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(99, 102, 241, 0.4);
+  border-radius: 12px;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  position: relative;
+  box-shadow:
+    0 0 30px rgba(99, 102, 241, 0.2),
+    inset 0 0 40px rgba(0, 0, 0, 0.3);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Tech frame corners for diagram */
+.diagramFrame::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  width: 25px;
+  height: 25px;
+  border-top: 2px solid var(--rbg-tech-cyan);
+  border-left: 2px solid var(--rbg-tech-cyan);
+  opacity: 0.7;
+}
+
+.diagramFrame::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 25px;
+  height: 25px;
+  border-bottom: 2px solid var(--rbg-tech-purple);
+  border-right: 2px solid var(--rbg-tech-purple);
+  opacity: 0.7;
+}
+
+.diagramHeader {
+  padding: var(--rbg-space-3) var(--rbg-space-4);
+  background: rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.3);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  gap: var(--rbg-space-2);
+}
+
+.diagramHeader svg {
+  color: var(--rbg-tech-cyan);
+}
+
+.diagramHeader span {
+  font-family: var(--ifm-font-family-monospace);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.diagramImage {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  padding: var(--rbg-space-4);
+  filter: brightness(1.05) contrast(1.1);
+  transition: filter 0.3s ease;
+}
+
+.diagramFrame:hover .diagramImage {
+  filter: brightness(1.1) contrast(1.15);
 }
 
 .codePreview {
@@ -287,6 +408,18 @@
   .heroBanner {
     min-height: auto;
     padding: var(--rbg-space-10) var(--rbg-space-4);
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .previewGrid {
+    grid-template-columns: 1fr;
+    gap: var(--rbg-space-4);
+  }
+
+  .diagramFrame,
+  .codePreview {
+    max-height: 350px;
   }
 }
 

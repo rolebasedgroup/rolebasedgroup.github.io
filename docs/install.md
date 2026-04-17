@@ -9,7 +9,7 @@ Installing RBG to a Kubernetes Cluster
 
 ## Prerequisites
 
-- A Kubernetes cluster with version >= 1.28 is Required, or it will behave unexpectedly.
+- A Kubernetes cluster with version >= 1.22 is Required, or it will behave unexpectedly.
 - Kubernetes cluster has at least 1 node with 1+ CPUs and 1G of memory available for the RoleBasedGroup controller manager Deployment to run on.
 - The kubectl command-line tool has communication with your cluster.
 

@@ -11,6 +11,7 @@ import ScrollProgress from '@site/src/components/ScrollProgress';
 import TechBackground from '@site/src/components/TechBackground';
 import ArchitectureCarousel from '@site/src/components/ArchitectureCarousel';
 import HowToContribute from '@site/src/components/HowToContribute';
+import RBGInACKStack from '@site/src/components/RBGInACKStack';
 import { useScrollAnimation } from '@site/src/hooks/useScrollAnimation';
 
 import styles from './index.module.css';
@@ -23,14 +24,20 @@ function HomepageHeader() {
       <div className="container">
         <div className={styles.heroContent}>
           <h1 className={styles.heroTitle}>
+            <span className={styles.projectName}>RoleBasedGroup</span>
+            <br />
             Kubernetes-native
             <br />
             LLM Inference Orchestration
           </h1>
           <p className={styles.heroSubtitle}>
-            Production-grade deployment for multi-role AI workloads.
-            Prefill/decode separation, tensor parallelism, and hardware-aware placement
-            — all with a single declarative API (v1alpha2).
+            Production-grade deployment for multi-role AI workloads, orchestrating distributed, stateful inference workloads with seamless role collaboration.
+            <br />
+            <span className={styles.subtitleHighlight}>Any Inference Engine</span> × <span className={styles.subtitleHighlight}>Any Architecture</span>
+            <br />
+            <span className={styles.architectureTags}>PD Disaggregated · EPD Disaggregated · AF Disaggregated · Tensor Parallel</span>
+            <br />
+            All with a single declarative API (v1alpha2).
           </p>
           <div className={styles.heroButtons}>
             <Link
@@ -71,21 +78,37 @@ function HomepageHeader() {
           <div className={styles.heroBadges}>
             <span className={styles.heroBadge}>v1alpha2 API</span>
             <span className={styles.heroBadge}>Apache 2.0</span>
-            <span className={styles.heroBadge}>Kubernetes 1.28+</span>
+            <span className={styles.heroBadge}>Kubernetes 1.22+</span>
           </div>
         </div>
         <div className={styles.heroPreview}>
-          <div className={styles.codePreview}>
-            <div className={styles.codeHeader}>
-              <div className={styles.codeHeaderDots}>
-                <span className={styles.dotRed}></span>
-                <span className={styles.dotYellow}></span>
-                <span className={styles.dotGreen}></span>
+          <div className={styles.previewGrid}>
+            <div className={styles.architectureDiagram}>
+              <div className={styles.diagramFrame}>
+                <div className={styles.diagramHeader}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" width="16" height="16">
+                    <path d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                  <span>Architecture Overview</span>
+                </div>
+                <img
+                  src="/img/rbg-concept.png"
+                  alt="RoleBasedGroup Architecture Diagram"
+                  className={styles.diagramImage}
+                />
               </div>
-              <span className={styles.codeHeaderTitle}>RoleBasedGroup.yaml</span>
             </div>
-            <pre className={styles.codeBlock}>
-              <code>{`apiVersion: workloads.x-k8s.io/v1alpha2
+            <div className={styles.codePreview}>
+              <div className={styles.codeHeader}>
+                <div className={styles.codeHeaderDots}>
+                  <span className={styles.dotRed}></span>
+                  <span className={styles.dotYellow}></span>
+                  <span className={styles.dotGreen}></span>
+                </div>
+                <span className={styles.codeHeaderTitle}>RoleBasedGroup.yaml</span>
+              </div>
+              <pre className={styles.codeBlock}>
+                <code>{`apiVersion: workloads.x-k8s.io/v1alpha2
 kind: RoleBasedGroup
 metadata:
   name: llm-inference
@@ -103,7 +126,8 @@ spec:
       dependencies: ["prefill"]
       leaderWorkerPattern:
         size: 2`}</code>
-            </pre>
+              </pre>
+            </div>
           </div>
         </div>
       </div>
@@ -120,11 +144,12 @@ export default function Home(): JSX.Element {
       <ScrollProgress />
       <HomepageHeader />
       <main>
-        <QuickStart />
         <HomepageFeatures />
+        <Ecosystem />
+        <QuickStart />
         <DeploymentPatterns />
         <ArchitectureCarousel />
-        <Ecosystem />
+        <RBGInACKStack />
         <UseCases />
         <HowToContribute />
       </main>
