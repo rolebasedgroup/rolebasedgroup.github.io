@@ -7,7 +7,7 @@ export default function RBGInACKStack(): JSX.Element {
   return (
     <section
       ref={sectionRef}
-      className={`section-light homepage-section section-animate ${isVisible ? 'animate-in' : ''}`}
+      className={`section-blue homepage-section section-animate ${isVisible ? 'animate-in' : ''}`}
     >
       <div className="container">
         <div className="section-header">

@@ -269,6 +269,10 @@ body {
   background: var(--ifm-color-secondary);
 }
 
+.section-blue {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(14, 165, 233, 0.06) 100%);
+}
+
 .section-gradient-top {
   background: linear-gradient(180deg, var(--ifm-color-secondary) 0%, var(--ifm-background-color) 100%);
 }
@@ -2804,4 +2808,75 @@ pre code {
   .stack-frame {
     max-width: 100%;
   }
+}
+
+/* ========================================
+   Deployment Pattern Code Toolbar
+   ======================================== */
+
+.pattern-code {
+  background: rgba(0, 0, 0, 0.5);
+  border: 2px solid rgba(99, 102, 241, 0.4);
+  border-radius: 12px;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  box-shadow:
+    0 0 30px rgba(99, 102, 241, 0.2),
+    inset 0 0 40px rgba(0, 0, 0, 0.3);
+}
+
+.pattern-code-header {
+  padding: var(--rbg-space-3) var(--rbg-space-4);
+  background: rgba(0, 0, 0, 0.5);
+  border-bottom: 1px solid rgba(99, 102, 241, 0.3);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  gap: var(--rbg-space-3);
+}
+
+.pattern-code-dots {
+  display: flex;
+  gap: 6px;
+}
+
+.pattern-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.pattern-dot.red {
+  background: #ff5f56;
+}
+
+.pattern-dot.yellow {
+  background: #ffbd2e;
+}
+
+.pattern-dot.green {
+  background: #27c93f;
+}
+
+.pattern-code-title {
+  font-family: var(--ifm-font-family-monospace);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.pattern-code-block {
+  margin: 0;
+  padding: var(--rbg-space-5);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #e2e8f0;
+  background: transparent;
+  overflow-x: auto;
+  max-height: 400px;
+}
+
+.pattern-code-block code {
+  background: transparent;
+  color: inherit;
+  font-family: var(--ifm-font-family-monospace);
 }
