@@ -23,6 +23,8 @@ function HomepageHeader() {
       <div className="container">
         <div className={styles.heroContent}>
           <h1 className={styles.heroTitle}>
+            <span className={styles.projectName}>RoleBasedGroup</span>
+            <br />
             Kubernetes-native
             <br />
             LLM Inference Orchestration
