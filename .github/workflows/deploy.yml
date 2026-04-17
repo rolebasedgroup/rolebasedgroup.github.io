@@ -15,28 +15,27 @@ jobs:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: actions/setup-node@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          node-version: 25
+          node-version: 20
+          cache: npm
+
       - name: Install dependencies
-        run: npm install || true
-      - name: Print npm logs on failure
-        if: failure()
-        run: |
-          echo "=== NPM Error Logs ==="
-          ls -la /home/runner/.npm/_logs/
-          find /home/runner/.npm/_logs/ -name "*.log" -exec sh -c 'echo "=== {} ==="; cat "{}"' \;
+        run: npm ci
+
       - name: Build website
         run: npm run build
 
-      # Popular action to deploy to GitHub Pages:
-      # Docs: https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-docusaurus
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          # Build output to publish to the `gh-pages` branch:
           publish_dir: ./build
+          publish_branch: gh-pages
+          cname: false
