@@ -144,10 +144,10 @@ export default function Home(): JSX.Element {
       <HomepageHeader />
       <main>
         <HomepageFeatures />
+        <Ecosystem />
         <QuickStart />
         <DeploymentPatterns />
         <ArchitectureCarousel />
-        <Ecosystem />
         <UseCases />
         <HowToContribute />
       </main>
