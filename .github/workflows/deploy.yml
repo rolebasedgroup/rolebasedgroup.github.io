@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-    # Review gh actions docs if you want to further define triggers, paths, etc
-    # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#on
 
 permissions:
   contents: write
@@ -24,10 +22,23 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
+
+      - name: Debug npm and node versions
+        run: |
+          echo "Node version: $(node --version)"
+          echo "NPM version: $(npm --version)"
+          echo "NPM config list:"
+          npm config list
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install --loglevel verbose
+
+      - name: Print npm logs on failure
+        if: failure()
+        run: |
+          echo "=== NPM Error Logs ==="
+          ls -la /home/runner/.npm/_logs/ || echo "No logs directory"
+          cat /home/runner/.npm/_logs/*.log || echo "No log files found"
 
       - name: Build website
         run: npm run build
@@ -37,5 +48,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build
-          publish_branch: gh-pages
-          cname: false
