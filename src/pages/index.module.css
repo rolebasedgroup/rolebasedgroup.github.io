@@ -164,23 +164,44 @@
 
 .codeHeader {
   padding: var(--rbg-space-3) var(--rbg-space-4);
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.5);
   border-bottom: 1px solid rgba(99, 102, 241, 0.3);
   font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.8);
   display: flex;
   align-items: center;
-  position: relative;
+  gap: var(--rbg-space-3);
 }
 
-/* Terminal dots simulation */
-.codeHeader::before {
-  content: '● ● ●';
-  position: absolute;
-  left: 12px;
-  font-size: 8px;
-  letter-spacing: 6px;
-  color: rgba(99, 102, 241, 0.6);
+.codeHeaderDots {
+  display: flex;
+  gap: 6px;
+}
+
+.dotRed {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff5f56;
+}
+
+.dotYellow {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ffbd2e;
+}
+
+.dotGreen {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #27c93f;
+}
+
+.codeHeaderTitle {
+  font-family: var(--ifm-font-family-monospace);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .codeHeaderIcon {
