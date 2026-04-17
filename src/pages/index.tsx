@@ -77,7 +77,7 @@ function HomepageHeader() {
           <div className={styles.heroBadges}>
             <span className={styles.heroBadge}>v1alpha2 API</span>
             <span className={styles.heroBadge}>Apache 2.0</span>
-            <span className={styles.heroBadge}>Kubernetes 1.28+</span>
+            <span className={styles.heroBadge}>Kubernetes 1.22+</span>
           </div>
         </div>
         <div className={styles.heroPreview}>

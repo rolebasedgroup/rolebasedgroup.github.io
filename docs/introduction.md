@@ -34,7 +34,7 @@ A group of roles that together form one logical service (e.g. one LLM inference 
 
 | Version | Kubernetes Version | LeaderWorkerSet Version |
 |:-----------:|:------------------:|:-----------------------:|
-|    main     |     >=v1.28.x      |        >=v0.7.0         |
+|    main     |     >=v1.22.x      |        >=v0.7.0         |
 |   v0.4.0    |     >=v1.28.x      |        >=v0.7.0         |
 |   v0.3.0    |     >=v1.28.x      |        >=v0.6.0         |
 

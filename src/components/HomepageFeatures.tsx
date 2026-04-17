@@ -39,9 +39,9 @@ const capabilities = [
     icon: 'M13 7h8m0 0v8m0-8l-8 8-4-4-6 6',
   },
   {
-    title: 'Role Templates',
+    title: 'Pre-Warmup',
     description:
-      'Reduce configuration duplication with roleTemplates. Multiple roles can reference shared templates using templateRef.',
+      'Pre-warmup mechanism for faster service initialization. Roles can be pre-provisioned and warmed up before serving requests, reducing cold start latency.',
     link: '/docs/introduction',
     icon: 'M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z',
   },

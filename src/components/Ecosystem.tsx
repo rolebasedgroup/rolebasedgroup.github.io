@@ -336,7 +336,7 @@ export default function Ecosystem(): JSX.Element {
             <span className="ecosystem-stat__label status-indicator">API Version</span>
           </div>
           <div className="ecosystem-stat card-3d" style={{ transitionDelay: '150ms' }}>
-            <span className="ecosystem-stat__value metric-value">K8s 1.28+</span>
+            <span className="ecosystem-stat__value metric-value">K8s 1.22+</span>
             <span className="ecosystem-stat__label status-indicator">Compatibility</span>
           </div>
           <div className="ecosystem-stat card-3d" style={{ transitionDelay: '200ms' }}>
