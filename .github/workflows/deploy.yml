@@ -23,19 +23,14 @@ jobs:
           node-version: 25
       - name: Install npm 11.12.1
         run: npm install -g npm@11.12.1
-      - name: Configure npm
-        run: npm config set registry https://registry.npmjs.org/
       - name: Install dependencies
         run: npm install
       - name: Print npm logs on failure
         if: failure()
         run: |
           echo "=== NPM Error Logs ==="
-          ls -la /home/runner/.npm/_logs/ 2>/dev/null || echo "No log directory found"
-          for f in /home/runner/.npm/_logs/*.log 2>/dev/null; do
-            echo "=== $f ==="
-            cat "$f"
-          done
+          ls -la /home/runner/.npm/_logs/
+          find /home/runner/.npm/_logs/ -name "*.log" -exec sh -c 'echo "=== {} ==="; cat "{}"' \;
       - name: Build website
         run: npm run build
 
