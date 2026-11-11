@@ -68,7 +68,7 @@ function HomepageHeader() {
             </Link>
             <Link
               className="button button--outline button--lg button-scale"
-              to="https://qr.dingtalk.com/action/joingroup?code=v1,k1,groupCode160490021178">
+              to="https://qr.dingtalk.com/action/joingroup?code=v1,k1,w0wc2lYau5FQhfnwoF8kR4m7urpRZQuSiqX4ZcbTAjpuRVJIwrSsXmL8oFqU5ajJ">
               <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" style={{ marginRight: '8px' }}>
                 <path d="M4 4h4v4H4V4zm12 0h4v4h-4V4zM4 16h4v4H4v-4zm12 0h4v4h-4v-4zm-6-6h4v4h-4v-4zm-2 0H4v4h4v-4zm12 0h-4v4h4v-4zM8 4h2v2H8V4zm6 0h2v2h-2V4zM4 10h2v2H4v-2zm14 0h2v2h-2v-2zM4 18h2v2H4v-2zm14 0h2v2h-2v-2z" />
               </svg>
