@@ -2880,3 +2880,336 @@ pre code {
   color: inherit;
   font-family: var(--ifm-font-family-monospace);
 }
+
+/* RI 提案：样式仅作用于带摘要卡片的页面。 */
+.container:has(.ri-proposal-summary) {
+  max-width: 1480px;
+}
+
+article:has(.ri-proposal-summary) > header h1,
+article:has(.ri-proposal-summary) > header h2 {
+  font-size: clamp(1.8rem, 3vw, 2.65rem);
+  line-height: 1.25;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.ri-proposal-summary {
+  margin: 1.5rem 0 2rem;
+  padding: clamp(1.25rem, 3vw, 2.25rem);
+  border: 1px solid var(--rbg-card-border);
+  border-radius: 20px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.09), rgba(14, 165, 233, 0.035));
+}
+
+.proposal-eyebrow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  color: var(--ifm-color-primary);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.proposal-eyebrow span {
+  padding: 0.25rem 0.65rem;
+  border-radius: 99px;
+  background: var(--rbg-card-bg);
+  border: 1px solid var(--rbg-card-border);
+  color: var(--ifm-color-content-secondary);
+  font-size: 0.75rem;
+  letter-spacing: 0;
+}
+
+.ri-proposal-summary .proposal-lead {
+  margin: 1rem 0 0.75rem;
+  font-size: clamp(1.35rem, 2.2vw, 1.9rem);
+  font-weight: 650;
+  line-height: 1.45;
+  text-wrap: balance;
+}
+
+.ri-proposal-summary > p:not(.proposal-lead) {
+  color: var(--ifm-color-content-secondary);
+  line-height: 1.8;
+}
+
+.proposal-facts,
+.proposal-config-flow,
+.proposal-takeaways {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.proposal-facts {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--rbg-card-border);
+}
+
+.proposal-facts strong,
+.proposal-facts span,
+.proposal-config-flow strong,
+.proposal-config-flow small {
+  display: block;
+}
+
+.proposal-facts strong {
+  color: var(--ifm-color-primary);
+  font-size: 1.05rem;
+}
+
+.proposal-facts span {
+  margin-top: 0.35rem;
+  font-size: 0.8rem;
+  color: var(--ifm-color-content-secondary);
+}
+
+.ri-proposal {
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+
+.ri-proposal h2 {
+  margin-top: 3.5rem;
+  padding-bottom: 0.85rem;
+  font-size: 1.6rem;
+  letter-spacing: -0.025em;
+  scroll-margin-top: 6rem;
+}
+
+.ri-proposal h3 {
+  font-size: 1.2rem;
+  margin-top: 2rem;
+}
+
+.ri-proposal li + li {
+  margin-top: 0.45rem;
+}
+
+.ri-proposal table {
+  width: 100%;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  border: 1px solid var(--rbg-card-border);
+  border-radius: 12px;
+}
+
+.ri-proposal th {
+  background: var(--ifm-pre-background);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.ri-proposal td,
+.ri-proposal th {
+  padding: 0.85rem 1rem;
+  border-color: var(--rbg-card-border);
+  vertical-align: top;
+}
+
+.ri-proposal pre {
+  font-size: 0.85rem;
+  line-height: 1.75;
+}
+
+.proposal-config-comparison {
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  border: 1px solid var(--rbg-card-border);
+  border-radius: 12px;
+}
+
+.ri-proposal .proposal-config-table {
+  display: table;
+  table-layout: fixed;
+  min-width: 760px;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+}
+
+.proposal-config-table th {
+  width: 50%;
+}
+
+.ri-proposal .proposal-config-table td {
+  padding: 0;
+}
+
+.proposal-config-table td > div,
+.proposal-config-table pre {
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.proposal-config-table pre code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.proposal-figure {
+  margin: 1.75rem 0;
+  border: 1px solid var(--rbg-card-border);
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--rbg-card-bg);
+}
+
+.proposal-figure > a {
+  display: block;
+  overflow-x: auto;
+  background: #f8fafc;
+  cursor: zoom-in;
+}
+
+.proposal-figure img {
+  display: block;
+  width: 100%;
+  min-width: 680px;
+  max-width: none;
+  height: auto;
+}
+
+.proposal-figure figcaption {
+  padding: 0.85rem 1.1rem;
+  border-top: 1px solid var(--rbg-card-border);
+  color: var(--ifm-color-content-secondary);
+  font-size: 0.8rem;
+  line-height: 1.65;
+}
+
+.proposal-config-flow {
+  margin: 1.5rem 0;
+}
+
+.proposal-config-flow > div,
+.proposal-takeaways > div {
+  position: relative;
+  padding: 1.15rem;
+  border: 1px solid var(--rbg-card-border);
+  border-radius: 12px;
+  background: var(--rbg-card-bg);
+}
+
+.proposal-config-flow > div:not(:last-child)::after {
+  content: '→';
+  position: absolute;
+  right: -0.85rem;
+  top: 45%;
+  z-index: 1;
+  color: var(--ifm-color-primary);
+  background: var(--ifm-background-color);
+  line-height: 1;
+}
+
+.proposal-config-flow span {
+  font-size: 0.75rem;
+  color: var(--ifm-color-primary);
+}
+
+.proposal-config-flow strong {
+  margin: 0.35rem 0;
+  font-size: 0.95rem;
+}
+
+.proposal-config-flow small,
+.proposal-takeaways p {
+  color: var(--ifm-color-content-secondary);
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+
+.proposal-takeaways p {
+  margin: 0.65rem 0 0;
+}
+
+.proposal-takeaways strong {
+  color: var(--ifm-color-primary);
+}
+
+.proposal-sequence {
+  overflow-x: auto;
+  padding: 1rem;
+  border: 1px solid var(--rbg-card-border);
+  border-radius: 16px;
+  margin: 1.5rem 0;
+}
+
+.proposal-sequence svg {
+  min-width: 900px;
+  max-width: none !important;
+}
+
+.proposal-figure a:focus-visible,
+.proposal-config-comparison:focus-visible,
+.proposal-sequence:focus-visible {
+  outline: 3px solid var(--ifm-color-primary);
+  outline-offset: -3px;
+}
+
+@media (min-width: 997px) {
+  .container:has(.ri-proposal-summary) > .row > aside.col--3 {
+    --ifm-col-width: 180px;
+  }
+
+  .container:has(.ri-proposal-summary) > .row > main {
+    flex: 1;
+    min-width: 0;
+    max-width: none;
+  }
+
+  .container:has(.ri-proposal-summary) > .row > .col--2 {
+    --ifm-col-width: 210px;
+  }
+}
+
+@media (max-width: 600px) {
+  .proposal-facts,
+  .proposal-config-flow,
+  .proposal-takeaways {
+    grid-template-columns: 1fr;
+  }
+
+  .proposal-facts > div {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.3rem 1rem;
+  }
+
+  .proposal-facts span {
+    margin: 0;
+  }
+
+  .proposal-config-flow > div:not(:last-child)::after {
+    content: '↓';
+    right: 50%;
+    top: auto;
+    bottom: -0.85rem;
+  }
+
+  .ri-proposal h2 {
+    font-size: 1.35rem;
+    margin-top: 2.5rem;
+  }
+}
+
+@media print {
+  .ri-proposal-summary,
+  .proposal-figure,
+  .proposal-takeaways > div {
+    break-inside: avoid;
+  }
+
+  .proposal-figure img,
+  .proposal-sequence svg,
+  .ri-proposal .proposal-config-table {
+    min-width: 0;
+    max-width: 100% !important;
+  }
+}

@@ -80,7 +80,23 @@ const config = {
     ],
   ],
 
-  plugins: [],
+  plugins: [
+    [
+      "@docusaurus/plugin-content-blog",
+      /** @type {import('@docusaurus/plugin-content-blog').Options} */
+      ({
+        id: "proposal",
+        path: "proposal",
+        routeBasePath: "proposal",
+        blogTitle: "RBG 设计提案",
+        blogDescription: "RBG 的设计讨论、生命周期协作与技术提案。",
+        blogSidebarTitle: "Proposals",
+        blogSidebarCount: "ALL",
+        showReadingTime: true,
+        onUntruncatedBlogPosts: "ignore",
+      }),
+    ],
+  ],
 
   markdown: {
     mermaid: true,
@@ -113,6 +129,11 @@ const config = {
           {
             to: "/blog",
             label: "Blog",
+            position: "left",
+          },
+          {
+            to: "/proposal",
+            label: "Proposal",
             position: "left",
           },
           {

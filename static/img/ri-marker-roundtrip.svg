@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 540" role="img" aria-labelledby="title desc">
+  <title id="title">RBG Controller 与 Patio 通过 label 协作</title>
+  <desc id="desc">以更新前的下线和缓存保存为例。上方箭头由 RBG Controller 指向 Patio：控制器写入 patio.com/router: offboard 和 patio.com/kv-cache: dump 两个 label，通知 Patio 执行操作。Patio 依次下线服务、排空请求并保存 KVCache，每项成功且确认清除对应 RI label 后继续下一项。下方返回箭头指向 RBG Controller，表示控制器确认两个 label 都已清除，继续更新 Pod。RI 是 RBG 管理的实例。</desc>
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+      .title { fill: #17233d; font-size: 25px; font-weight: 700; }
+      .sub { fill: #596981; font-size: 15px; }
+      .name { fill: #17233d; font-size: 21px; font-weight: 650; text-anchor: middle; }
+      .detail { fill: #596981; font-size: 15px; text-anchor: middle; }
+      .label { fill: #4f46c9; font-size: 16px; font-weight: 650; text-anchor: middle; }
+      .code { fill: #4f46c9; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 17px; }
+      .node { fill: white; stroke: #ccd6e6; stroke-width: 1.5; }
+      .notify { fill: none; stroke: #5b55cf; stroke-width: 2; marker-end: url(#blue); }
+      .ack { fill: none; stroke: #168171; stroke-width: 2; stroke-dasharray: 7 5; marker-end: url(#green); }
+    </style>
+    <marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#5b55cf"/></marker>
+    <marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#168171"/></marker>
+  </defs>
+  <rect width="1120" height="540" rx="20" fill="#f8fafc"/>
+  <text class="title" x="28" y="43">RBG Controller 与 Patio 通过 label 协作</text>
+  <text class="sub" x="28" y="70">以更新前的服务下线、请求排空和缓存保存为例</text>
+
+  <path class="notify" d="M178 156 V118 H942 V156"/>
+  <text class="label" x="560" y="106">写入 RI label，通知 Patio 执行外部操作</text>
+
+  <rect x="40" y="160" width="276" height="264" rx="16" fill="#eeefff" stroke="#d4d7f7"/>
+  <text class="name" x="178" y="198">RBG Controller</text>
+  <text class="detail" x="178" y="224">控制工作负载的更新</text>
+  <rect class="node" x="60" y="248" width="236" height="150" rx="12"/>
+  <text class="name" x="178" y="280">写入操作 label</text>
+  <text class="detail" x="178" y="307">等待下线和缓存保存完成</text>
+  <path d="M80 326 H276" stroke="#d8e0ec"/>
+  <text class="name" x="178" y="359">继续更新 Pod</text>
+  <text class="detail" x="178" y="384">两个 label 清除后执行</text>
+
+  <rect class="node" x="354" y="232" width="412" height="116" rx="12"/>
+  <text class="label" x="560" y="260">通知 Patio 的 label</text>
+  <text class="code" x="388" y="294">patio.com/router: offboard</text>
+  <text class="code" x="388" y="326">patio.com/kv-cache: dump</text>
+
+  <rect x="804" y="160" width="276" height="264" rx="16" fill="#eaf8f4" stroke="#bfe2d8"/>
+  <text class="name" x="942" y="198">Patio</text>
+  <text class="detail" x="942" y="224">按配置顺序执行 Callback</text>
+  <rect class="node" x="824" y="244" width="236" height="76" rx="12"/>
+  <text class="name" x="942" y="276">服务下线并排空请求</text>
+  <text class="detail" x="942" y="304">router_offboard</text>
+  <path class="notify" d="M942 324 V338"/>
+  <rect class="node" x="824" y="344" width="236" height="66" rx="12"/>
+  <text class="name" x="942" y="372">保存 KVCache</text>
+  <text class="detail" x="942" y="396">kv_cache_dump</text>
+
+  <path class="ack" d="M942 428 V474 H178 V428"/>
+  <rect x="308" y="454" width="504" height="40" rx="20" fill="#eaf8f4"/>
+  <text x="560" y="480" text-anchor="middle" fill="#136c60" font-size="16" font-weight="650">每项完成后，通过 API 清除对应的 RI label</text>
+  <text class="sub" x="28" y="522">label 写在 RI（RoleInstance，实例）上；返回箭头表示控制器观察到 label 已清除。</text>
+</svg>
