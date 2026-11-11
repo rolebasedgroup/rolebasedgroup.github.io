@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkrbg_website=self.webpackChunkrbg_website||[]).push([[56],{3563:s=>{s.exports=JSON.parse('{"blogBasePath":"/proposal","blogTitle":"RBG \u8bbe\u8ba1\u63d0\u6848","authorsListPath":"/proposal/authors"}')}}]);

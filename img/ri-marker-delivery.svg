@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 512" role="img" aria-labelledby="title desc">
+  <title id="title">signalLabel 的通知路径与完成确认路径</title>
+  <desc id="desc">RI Controller 将 signalLabel 写入 RI labels，RBG 将其同步到 Pod labels，再通过 Downward API 只读文件提供给 Patio Executor。Executor 匹配 signalLabel 并调用 Callback。Callback 成功返回后，Executor 通过 API 清除 RI 上对应的 signalLabel，RI Controller 观察变化。Callback 不操作 signalLabel，Patio 不写入通知文件。</desc>
+  <defs>
+    <style>
+      text { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; }
+      .name { fill: #17233d; font-size: 19px; font-weight: 650; text-anchor: middle; }
+      .detail { fill: #596981; font-size: 15px; text-anchor: middle; }
+      .edge-label { fill: #4f46c9; font-size: 14px; text-anchor: middle; }
+      .success-label { fill: #136c60; font-size: 14px; text-anchor: middle; }
+      .node { fill: #fff; stroke: #ccd6e6; stroke-width: 1.5; }
+      .notify { fill: none; stroke: #5b55cf; stroke-width: 2; stroke-linejoin: round; marker-end: url(#notify-arrow); }
+      .ack { fill: none; stroke: #168171; stroke-width: 2; stroke-dasharray: 7 5; stroke-linejoin: round; marker-end: url(#ack-arrow); }
+    </style>
+    <marker id="notify-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#5b55cf"/></marker>
+    <marker id="ack-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#168171"/></marker>
+  </defs>
+  <rect width="1120" height="512" rx="20" fill="#f8fafc"/>
+
+  <rect x="28" y="28" width="184" height="132" rx="14" fill="#eeefff" stroke="#d4d7f7"/>
+  <text class="name" x="120" y="65">RI labels</text>
+  <text class="detail" x="120" y="100">保存操作信号</text>
+  <text class="detail" x="120" y="128">signalLabel</text>
+
+  <path class="notify" d="M216 96 H250"/>
+  <text class="edge-label" x="234" y="80">同步</text>
+  <rect class="node" x="256" y="28" width="184" height="132" rx="14"/>
+  <text class="name" x="348" y="65">Pod labels</text>
+  <text class="detail" x="348" y="100">接收 signalLabel 的</text>
+  <text class="detail" x="348" y="128">添加与删除</text>
+
+  <path class="notify" d="M444 96 H478"/>
+  <text class="edge-label" x="462" y="80">提供</text>
+  <rect class="node" x="484" y="28" width="200" height="132" rx="14"/>
+  <text class="name" x="584" y="65">Downward API</text>
+  <text class="detail" x="584" y="100">只读文件</text>
+  <text class="detail" x="584" y="128">来自 Pod labels</text>
+
+  <path class="notify" d="M688 96 H722"/>
+  <text class="edge-label" x="706" y="80">读取</text>
+  <rect x="728" y="28" width="172" height="132" rx="14" fill="#eaf8f4" stroke="#bfe2d8"/>
+  <text class="name" x="814" y="65">Patio Executor</text>
+  <text class="detail" x="814" y="100">匹配 signalLabel</text>
+  <text class="detail" x="814" y="128">调度 Callback</text>
+
+  <path class="notify" d="M904 96 H938"/>
+  <text class="edge-label" x="922" y="80">调用</text>
+  <rect class="node" x="944" y="28" width="148" height="132" rx="14"/>
+  <text class="name" x="1018" y="65">Callback</text>
+  <text class="detail" x="1018" y="100">执行外部操作</text>
+  <text class="detail" x="1018" y="128">不操作 signalLabel</text>
+
+  <path class="ack" d="M1018 164 V218 H814 V164"/>
+  <text class="success-label" x="916" y="205">成功返回</text>
+  <path class="ack" d="M724 132 H710 V280 H234 V132 H216"/>
+  <rect x="298" y="260" width="354" height="40" rx="20" fill="#eaf8f4"/>
+  <text x="475" y="286" text-anchor="middle" fill="#136c60" font-size="16" font-weight="650">Executor 通过 API 清除 RI signalLabel</text>
+
+  <path class="notify" d="M68 336 V164"/>
+  <text class="edge-label" x="46" y="256">写入</text>
+  <path class="ack" d="M172 164 V336"/>
+  <text class="success-label" x="194" y="256">观察</text>
+  <rect x="28" y="340" width="184" height="136" rx="14" fill="#eeefff" stroke="#d4d7f7"/>
+  <text class="name" x="120" y="375">RI Controller</text>
+  <text class="detail" x="120" y="407">写入 signalLabel</text>
+  <text class="detail" x="120" y="434">观察 signalLabel 变化</text>
+  <text class="detail" x="120" y="461">按生命周期处理 Pod</text>
+
+  <rect class="node" x="292" y="340" width="800" height="136" rx="14"/>
+  <path class="notify" d="M316 370 H354"/>
+  <text x="366" y="375" fill="#4f46c9" font-size="15">通知与调用</text>
+  <path class="ack" d="M594 370 H632"/>
+  <text x="644" y="375" fill="#136c60" font-size="15">成功返回与完成确认</text>
+  <text x="316" y="416" fill="#596981" font-size="16">Downward API 文件只读，Patio 从这里读取操作信号。</text>
+  <text x="316" y="448" fill="#596981" font-size="16">完成后由 Executor 修改 RI signalLabel，不写入通知文件。</text>
+</svg>

@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkrbg_website=self.webpackChunkrbg_website||[]).push([[1916],{7882:e=>{e.exports=JSON.parse('{"title":"Proposals","items":[{"title":"RI Lifecycle Hooks\uff1aRBG \xd7 Patio","permalink":"/proposal/2026/11/11/ri-lifecycle","unlisted":false,"date":"2026-11-11T00:00:00.000Z"}]}')}}]);
