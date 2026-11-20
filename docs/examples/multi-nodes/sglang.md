@@ -1,29 +1,38 @@
 ---
 id: sglang-multi
-title: SGLang Multi Node
+title: SGLang Aggregated Multi Node
 ---
 
-# SGLang Multi Node Deployment
+# SGLang aggregated multi-node deployment
 
-Deploy SGLang inference service across multiple Kubernetes nodes using LeaderWorkerSet.
+Use `leaderWorkerPattern` when one SGLang inference instance spans multiple Kubernetes nodes.
 
 ```yaml
-apiVersion: rbgs.sgl-project.dev/v1
+apiVersion: workloads.x-k8s.io/v1alpha2
 kind: RoleBasedGroup
 metadata:
   name: sglang-multi
 spec:
   roles:
     - name: inference
-      workloadType: LeaderWorkerSet
-      replicas: 4
-      roleSpec:
-        leaderWorkerTemplate:
-          leaderTemplate:
-            spec:
-              containers:
-                - name: sglang-leader
-                  image: lmsysorg/sglang:latest
+      replicas: 2
+      leaderWorkerPattern:
+        size: 4
+        restartPolicyConfig:
+          type: RecreateRoleInstanceOnPodRestart
+        template:
+          spec:
+            containers:
+              - name: sglang
+                image: lmsysorg/sglang:v0.5.9
+                args:
+                  - --model-path=Qwen/Qwen3-0.6B
+                  - --tp-size=4
 ```
 
-View the complete example: [sglang.yaml](https://github.com/sgl-project/rbg/blob/main/examples/multi-nodes/sglang.yaml)
+Each replica becomes one `RoleInstance` with one leader Pod and `size - 1` worker Pods.
+
+Complete examples:
+
+- [`agg-leader-worker.yaml`](https://github.com/sgl-project/rbg/blob/main/examples/inference/agg-leader-worker.yaml)
+- [`dynamo/agg-multi-nodes.yaml`](https://github.com/sgl-project/rbg/blob/main/examples/inference/ecosystem/dynamo/agg-multi-nodes.yaml)
