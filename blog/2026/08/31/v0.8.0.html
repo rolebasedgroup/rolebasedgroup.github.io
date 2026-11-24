@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="blog-wrapper blog-post-page plugin-blog plugin-id-default" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.5.0">
+<title data-rh="true">RBG v0.8.0 发布：节点预热、原地调度与更稳健的故障恢复 | RBG</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://rolebasedgroup.github.io/img/social-card.png"><meta data-rh="true" name="twitter:image" content="https://rolebasedgroup.github.io/img/social-card.png"><meta data-rh="true" property="og:url" content="https://rolebasedgroup.github.io/blog/2026/08/31/v0.8.0"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" name="twitter:site" content="@sglang"><meta data-rh="true" name="og:type" content="website"><meta data-rh="true" name="og:site_name" content="RBG - RoleBasedGroup"><meta data-rh="true" property="og:title" content="RBG v0.8.0 发布：节点预热、原地调度与更稳健的故障恢复 | RBG"><meta data-rh="true" name="description" content="RBG v0.8.0 新增节点预热、原地调度和重启退避，减少推理服务重复准备资源的开销，并修复扩缩容、滚动更新和升级兼容性问题。"><meta data-rh="true" property="og:description" content="RBG v0.8.0 新增节点预热、原地调度和重启退避，减少推理服务重复准备资源的开销，并修复扩缩容、滚动更新和升级兼容性问题。"><meta data-rh="true" property="og:type" content="article"><meta data-rh="true" property="article:published_time" content="2026-08-31T00:00:00.000Z"><meta data-rh="true" property="article:tag" content="release"><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://rolebasedgroup.github.io/blog/2026/08/31/v0.8.0"><link data-rh="true" rel="alternate" href="https://rolebasedgroup.github.io/blog/2026/08/31/v0.8.0" hreflang="en"><link data-rh="true" rel="alternate" href="https://rolebasedgroup.github.io/blog/2026/08/31/v0.8.0" hreflang="x-default"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","@id":"https://rolebasedgroup.github.io/blog/2026/08/31/v0.8.0","mainEntityOfPage":"https://rolebasedgroup.github.io/blog/2026/08/31/v0.8.0","url":"https://rolebasedgroup.github.io/blog/2026/08/31/v0.8.0","headline":"RBG v0.8.0 发布：节点预热、原地调度与更稳健的故障恢复","name":"RBG v0.8.0 发布：节点预热、原地调度与更稳健的故障恢复","description":"RBG v0.8.0 新增节点预热、原地调度和重启退避，减少推理服务重复准备资源的开销，并修复扩缩容、滚动更新和升级兼容性问题。","datePublished":"2026-08-31T00:00:00.000Z","author":[],"keywords":[],"isPartOf":{"@type":"Blog","@id":"https://rolebasedgroup.github.io/blog","name":"Blog"}}</script><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="RBG RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="RBG Atom Feed">
+
+
+
+<link rel="alternate" type="application/rss+xml" href="/proposal/rss.xml" title="RBG RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/proposal/atom.xml" title="RBG Atom Feed">
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"RBG - RoleBasedGroup","url":"https://rolebasedgroup.github.io","description":"Kubernetes API for orchestrating distributed, stateful AI inference workloads with multi-role collaboration and built-in service discovery.","applicationCategory":"DeveloperApplication","operatingSystem":"Kubernetes","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script><link rel="stylesheet" href="/assets/css/styles.902ee30b.css">
+<script src="/assets/js/runtime~main.b6591c3e.js" defer="defer"></script>
+<script src="/assets/js/main.3998cecb.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/logo.svg" alt="RBG Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/logo.svg" alt="RBG Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">RBG</b></a><a class="navbar__item navbar__link" href="/docs">Documentation</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/blog">Blog</a><a class="navbar__item navbar__link" href="/proposal">Proposal</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/sgl-project/rbg" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><a href="https://sgl-fru7574.slack.com/archives/C098X0LQZV5" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Slack<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="container margin-vert--lg"><div class="row"><aside class="col col--3"><nav class="sidebar_re4s thin-scrollbar" aria-label="Blog recent posts navigation"><div class="sidebarItemTitle_pO2u margin-bottom--md">Recent posts</div><div role="group"><h3 class="yearGroupHeading_rMGB">2026</h3><ul class="sidebarItemList_Yudw clean-list"><li class="sidebarItem__DBe"><a aria-current="page" class="sidebarItemLink_mo7H sidebarItemLinkActive_I1ZP" href="/blog/2026/08/31/v0.8.0">RBG v0.8.0 发布：节点预热、原地调度与更稳健的故障恢复</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/2026/04/01/v0.7.0-alpha.2">RBG v0.7.0-alpha.2 Released</a></li></ul></div><div role="group"><h3 class="yearGroupHeading_rMGB">2025</h3><ul class="sidebarItemList_Yudw clean-list"><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/2025/09/23/v0.4.0">RBG v0.4.0 Released</a></li><li class="sidebarItem__DBe"><a class="sidebarItemLink_mo7H" href="/blog/2025/08/28/introducing-rbg">Introducing RoleBasedGroup</a></li></ul></div></nav></aside><main class="col col--7"><article><header><h1 class="title_f1Hy">RBG v0.8.0 发布：节点预热、原地调度与更稳健的故障恢复</h1><div class="container_mt6G margin-vert--md"><time datetime="2026-08-31T00:00:00.000Z">August 31, 2026</time> · <!-- -->8 min read</div></header><div id="__blog-post-container" class="markdown"><h2 class="anchor anchorWithStickyNavbar_LWe7" id="版本总结">版本总结<a href="#版本总结" class="hash-link" aria-label="Direct link to 版本总结" title="Direct link to 版本总结">​</a></h2>
+<p>v0.8.0 通过节点预热、原地调度和重启退避，减少推理服务启动与故障恢复中的重复开销，并修复扩缩容、滚动更新和升级兼容性问题。</p>
+<p>升级前须<a href="https://github.com/sgl-project/rbg/blob/v0.8.0/deploy/helm/rbgs/README.md#breaking-change-values-regrouped-in-chart-v080" target="_blank" rel="noopener noreferrer">迁移 Helm 自定义配置</a>，旧配置会被忽略；<a href="https://github.com/sgl-project/rbg/pull/437" target="_blank" rel="noopener noreferrer">CRD 升级工具</a>的 kubectl 已更新为 v1.37.0，旧集群需<a href="https://kubernetes.io/releases/version-skew-policy/#kubectl" target="_blank" rel="noopener noreferrer">核对版本兼容性</a>。服务发现及 alpha 升级提醒见下文。</p>
+<ul>
+<li><a href="https://github.com/sgl-project/rbg/releases/tag/v0.8.0" target="_blank" rel="noopener noreferrer">Release 详情</a></li>
+<li><a href="https://github.com/sgl-project/rbg/compare/v0.7.0...v0.8.0" target="_blank" rel="noopener noreferrer">相较上一正式版本的完整变更</a></li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="新特性">新特性<a href="#新特性" class="hash-link" aria-label="Direct link to 新特性" title="Direct link to 新特性">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="节点预热提前准备镜像与运行环境">节点预热：提前准备镜像与运行环境<a href="#节点预热提前准备镜像与运行环境" class="hash-link" aria-label="Direct link to 节点预热：提前准备镜像与运行环境" title="Direct link to 节点预热：提前准备镜像与运行环境">​</a></h3>
+<p>新增 RoleBasedGroupWarmup，可在指定节点或已有 RBG 所在节点预拉取镜像、执行自定义预热任务，为后续部署或升级准备资源。任务支持并发控制、失败重试和超时限制，便于批量管理预热过程。</p>
+<p>相关 PR：</p>
+<ul>
+<li><a href="https://github.com/sgl-project/rbg/pull/335" target="_blank" rel="noopener noreferrer">#335</a> — feat: support RoleBasedGroup Warmup (phase 1)</li>
+<li><a href="https://github.com/sgl-project/rbg/pull/379" target="_blank" rel="noopener noreferrer">#379</a> — feat: refactor and implement warmup</li>
+</ul>
+<p>贡献者：</p>
+<ul>
+<li><a href="https://github.com/TrafalgarZZZ" target="_blank" rel="noopener noreferrer">@TrafalgarZZZ</a></li>
+<li><a href="https://github.com/NoobDream2568" target="_blank" rel="noopener noreferrer">@NoobDream2568</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="原地调度让重建的-pod-复用节点缓存">原地调度：让重建的 Pod 复用节点缓存<a href="#原地调度让重建的-pod-复用节点缓存" class="hash-link" aria-label="Direct link to 原地调度：让重建的 Pod 复用节点缓存" title="Direct link to 原地调度：让重建的 Pod 复用节点缓存">​</a></h3>
+<p>启用原地调度后，重建的 Pod 可优先回到同一工作负载运行过的节点，复用已有镜像和模型缓存，减少重复准备资源的开销。</p>
+<p>若选择强制回到历史节点，节点不可用时可能无法完成调度，使用前请了解<a href="https://github.com/sgl-project/rbg/blob/v0.8.0/doc/best-practice/zh/04-configuring-inplace-update-and-scheduling-policies.md" target="_blank" rel="noopener noreferrer">适用条件与限制</a>。</p>
+<p>相关 PR：</p>
+<ul>
+<li><a href="https://github.com/sgl-project/rbg/pull/368" target="_blank" rel="noopener noreferrer">#368</a> — feat(rbg): support inplace scheduling</li>
+</ul>
+<p>贡献者：</p>
+<ul>
+<li><a href="https://github.com/NoobDream2568" target="_blank" rel="noopener noreferrer">@NoobDream2568</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="重启退避减少连续故障引发的反复重建">重启退避：减少连续故障引发的反复重建<a href="#重启退避减少连续故障引发的反复重建" class="hash-link" aria-label="Direct link to 重启退避：减少连续故障引发的反复重建" title="Direct link to 重启退避：减少连续故障引发的反复重建">​</a></h3>
+<p>对启用故障联动重建的角色实例，连续故障后的重建会逐步延后，避免短时间内反复重建整组 Pod。首次故障仍立即处理，后续重试间隔可按业务需要调整。</p>
+<p>已有工作负载使用该重启策略时，也会默认启用退避；如需保持每次立即重建，可按<a href="https://github.com/sgl-project/rbg/blob/v0.8.0/doc/features/failure-handling.md#disabling-backoff" target="_blank" rel="noopener noreferrer">故障处理文档</a>关闭。</p>
+<p>相关 PR：</p>
+<ul>
+<li><a href="https://github.com/sgl-project/rbg/pull/394" target="_blank" rel="noopener noreferrer">#394</a> — feat: add exponential backoff for restart policy</li>
+<li><a href="https://github.com/sgl-project/rbg/pull/409" target="_blank" rel="noopener noreferrer">#409</a> — feat: add exponential backoff for restart policy with API and docs improvements</li>
+</ul>
+<p>贡献者：</p>
+<ul>
+<li><a href="https://github.com/Syspretor" target="_blank" rel="noopener noreferrer">@Syspretor</a></li>
+<li><a href="https://github.com/diw-zw" target="_blank" rel="noopener noreferrer">@diw-zw</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="其他功能增强">其他功能增强<a href="#其他功能增强" class="hash-link" aria-label="Direct link to 其他功能增强" title="Direct link to 其他功能增强">​</a></h3>
+<ul>
+<li><strong>更早发现配置错误</strong>：提交时即可拦截不合法的 RBG 名称、重复组件名及与 ScalingAdapter 不一致的手工副本修改，已有重名组件需在更新前修正。</li>
+<li><strong>按需收紧控制器权限</strong>：新安装可禁用旧工作负载类型并移除相应权限，已有安装应保留默认兼容设置，详见<a href="https://github.com/sgl-project/rbg/blob/v0.8.0/deploy/helm/rbgs/README.md#deprecated-workload-types" target="_blank" rel="noopener noreferrer">使用限制</a>。</li>
+<li><strong>更清晰的审计信息</strong>：各控制器的 API 请求带有独立标识，方便在 Kubernetes 审计日志中追踪请求来源。</li>
+<li><strong>Model Express 集成示例</strong>：Dynamo SGLang 示例补充模型分发服务的接入说明，方便在 RBG 部署中配置模型分发加速。</li>
+</ul>
+<p>相关 PR：</p>
+<ul>
+<li><a href="https://github.com/sgl-project/rbg/pull/395" target="_blank" rel="noopener noreferrer">#395</a> — feat: add admission webhook for rbg</li>
+<li><a href="https://github.com/sgl-project/rbg/pull/435" target="_blank" rel="noopener noreferrer">#435</a> — fix: reject duplicate roleinstance component names</li>
+<li><a href="https://github.com/sgl-project/rbg/pull/416" target="_blank" rel="noopener noreferrer">#416</a> — feat: restrict v1alpha1 API compatibility RBAC via Helm toggle</li>
+<li><a href="https://github.com/sgl-project/rbg/pull/364" target="_blank" rel="noopener noreferrer">#364</a> — feat: add ua for every controller</li>
+<li><a href="https://github.com/sgl-project/rbg/pull/356" target="_blank" rel="noopener noreferrer">#356</a> — docs: add Model Express integration to Dynamo SGLang examples</li>
+</ul>
+<p>贡献者：</p>
+<ul>
+<li><a href="https://github.com/NoobDream2568" target="_blank" rel="noopener noreferrer">@NoobDream2568</a></li>
+<li><a href="https://github.com/googs1025" target="_blank" rel="noopener noreferrer">@googs1025</a></li>
+<li><a href="https://github.com/diw-zw" target="_blank" rel="noopener noreferrer">@diw-zw</a></li>
+<li><a href="https://github.com/vie-serendipity" target="_blank" rel="noopener noreferrer">@vie-serendipity</a></li>
+<li><a href="https://github.com/Syspretor" target="_blank" rel="noopener noreferrer">@Syspretor</a></li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="重大-bug-修复">重大 bug 修复<a href="#重大-bug-修复" class="hash-link" aria-label="Direct link to 重大 bug 修复" title="Direct link to 重大 bug 修复">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="保持-v070-存量对象可读取">保持 v0.7.0 存量对象可读取<a href="#保持-v070-存量对象可读取" class="hash-link" aria-label="Direct link to 保持 v0.7.0 存量对象可读取" title="Direct link to 保持 v0.7.0 存量对象可读取">​</a></h3>
+<p>修复重启策略格式变化导致旧对象无法读取、控制器无法正常同步的问题。从 v0.7.0 升级无需改写已有重启策略。</p>
+<p>曾部署 v0.8.0-alpha.3 或 alpha.4 的用户，须按<a href="https://github.com/sgl-project/rbg/blob/v0.8.0/doc/features/failure-handling.md#upgrading" target="_blank" rel="noopener noreferrer">升级说明</a>删除并重建受影响的 RBG 及关联资源，需安排可接受工作负载重建的维护窗口。</p>
+<p>相关 PR：</p>
+<ul>
+<li><a href="https://github.com/sgl-project/rbg/pull/424" target="_blank" rel="noopener noreferrer">#424</a> — fix: restore restartPolicy as a string to keep v0.7.0 objects decodable</li>
+</ul>
+<p>贡献者：</p>
+<ul>
+<li><a href="https://github.com/diw-zw" target="_blank" rel="noopener noreferrer">@diw-zw</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="避免配置未变却触发滚动更新">避免配置未变却触发滚动更新<a href="#避免配置未变却触发滚动更新" class="hash-link" aria-label="Direct link to 避免配置未变却触发滚动更新" title="Direct link to 避免配置未变却触发滚动更新">​</a></h3>
+<p>修复控制器升级后，业务配置没有变化却触发滚动更新的问题，减少不必要的 Pod 重建与模型重新加载。</p>
+<p>相关 PR：</p>
+<ul>
+<li><a href="https://github.com/sgl-project/rbg/pull/433" target="_blank" rel="noopener noreferrer">#433</a> — fix: add semantic revision equality check to prevent spurious rollouts</li>
+<li><a href="https://github.com/sgl-project/rbg/pull/439" target="_blank" rel="noopener noreferrer">#439</a> — Fix/upgrade spurious rollout and identity labels</li>
+</ul>
+<p>贡献者：</p>
+<ul>
+<li><a href="https://github.com/diw-zw" target="_blank" rel="noopener noreferrer">@diw-zw</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="防止配置更新引发意外缩容">防止配置更新引发意外缩容<a href="#防止配置更新引发意外缩容" class="hash-link" aria-label="Direct link to 防止配置更新引发意外缩容" title="Direct link to 防止配置更新引发意外缩容">​</a></h3>
+<p>角色副本数由已绑定的 ScalingAdapter 管理时，Helm 升级或外部配置更新曾可能让副本数意外回落。本版保持实际工作负载与扩缩容目标一致，避免因此引发 Pod 缩减。</p>
+<p>相关 PR：</p>
+<ul>
+<li><a href="https://github.com/sgl-project/rbg/pull/306" target="_blank" rel="noopener noreferrer">#306</a> — fix(rbg-controller): override role.Replicas from bound RBGSA</li>
+</ul>
+<p>贡献者：</p>
+<ul>
+<li><a href="https://github.com/sebest" target="_blank" rel="noopener noreferrer">@sebest</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="修复单副本角色协同更新停滞">修复单副本角色协同更新停滞<a href="#修复单副本角色协同更新停滞" class="hash-link" aria-label="Direct link to 修复单副本角色协同更新停滞" title="Direct link to 修复单副本角色协同更新停滞">​</a></h3>
+<p>修复单副本角色在均未就绪时，受协同滚动更新进度约束而无法开始更新的问题，让这类部署能够继续推进版本变更。</p>
+<p>相关 PR：</p>
+<ul>
+<li><a href="https://github.com/sgl-project/rbg/pull/308" target="_blank" rel="noopener noreferrer">#308</a> — fix: coordinatedPolicy rollingUpdate maxSkew stall RoleInstanceSet</li>
+</ul>
+<p>贡献者：</p>
+<ul>
+<li><a href="https://github.com/JasonHe-WQ" target="_blank" rel="noopener noreferrer">@JasonHe-WQ</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="修复小副本数更新与缩容到零被拦截">修复小副本数更新与缩容到零被拦截<a href="#修复小副本数更新与缩容到零被拦截" class="hash-link" aria-label="Direct link to 修复小副本数更新与缩容到零被拦截" title="Direct link to 修复小副本数更新与缩容到零被拦截">​</a></h3>
+<p>修正百分比更新策略在小副本数场景下的校验，避免合法的滚动更新被拒绝；同时修复使用百分比不可用额度时，角色无法缩容到零的问题。</p>
+<p>相关 PR：</p>
+<ul>
+<li><a href="https://github.com/sgl-project/rbg/pull/382" target="_blank" rel="noopener noreferrer">#382</a> — feat: compute maxUnavailable correctly when validating rollout strategy</li>
+<li><a href="https://github.com/sgl-project/rbg/pull/431" target="_blank" rel="noopener noreferrer">#431</a> — fix: validate rolling strategy only when replicas gt 0</li>
+</ul>
+<p>贡献者：</p>
+<ul>
+<li><a href="https://github.com/vie-serendipity" target="_blank" rel="noopener noreferrer">@vie-serendipity</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="让更新方式与宽限期按配置生效">让更新方式与宽限期按配置生效<a href="#让更新方式与宽限期按配置生效" class="hash-link" aria-label="Direct link to 让更新方式与宽限期按配置生效" title="Direct link to 让更新方式与宽限期按配置生效">​</a></h3>
+<p>修复原地更新宽限期未生效、部分更新路径未遵循指定策略的问题，让工作负载按配置选择原地更新或重建，并在原地更新前保留设定的等待时间。</p>
+<p>相关 PR：</p>
+<ul>
+<li><a href="https://github.com/sgl-project/rbg/pull/393" target="_blank" rel="noopener noreferrer">#393</a> — fix: handle GracePeriodSeconds not correctly working and respect UpdateStrategy.Type</li>
+</ul>
+<p>贡献者：</p>
+<ul>
+<li><a href="https://github.com/NoobDream2568" target="_blank" rel="noopener noreferrer">@NoobDream2568</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="补齐-worker-pod-的-dns-身份">补齐 worker Pod 的 DNS 身份<a href="#补齐-worker-pod-的-dns-身份" class="hash-link" aria-label="Direct link to 补齐 worker Pod 的 DNS 身份" title="Direct link to 补齐 worker Pod 的 DNS 身份">​</a></h3>
+<p>修复 RoleInstanceSet 的 leader-worker 角色在共享 Service 选择全部 Pod 时，worker 缺少独立 DNS 名称的问题，让依赖 Pod 域名的组件能够发现 worker。</p>
+<p>升级提醒：未指定选择范围时，现在默认仅暴露 leader；依赖 worker 服务发现的用户须显式选择 <code>All</code>。已有显式 <code>All</code> 配置也会因本次修复触发 worker 重建，请按<a href="https://github.com/sgl-project/rbg/blob/v0.8.0/keps/260-leaderonly-service/README.md#upgrade-considerations" target="_blank" rel="noopener noreferrer">升级说明</a>安排变更窗口。</p>
+<p>相关 PR：</p>
+<ul>
+<li><a href="https://github.com/sgl-project/rbg/pull/418" target="_blank" rel="noopener noreferrer">#418</a> — fix: worker pods get no DNS identity under sharedServiceSelection=All</li>
+</ul>
+<p>贡献者：</p>
+<ul>
+<li><a href="https://github.com/diw-zw" target="_blank" rel="noopener noreferrer">@diw-zw</a></li>
+</ul></div><footer class="docusaurus-mt-lg"><div class="row margin-top--sm theme-blog-footer-edit-meta-row"><div class="col"><b>Tags:</b><ul class="tags_jXut padding--none margin-left--sm"><li class="tag_QGVx"><a class="tag_zVej tagRegular_sFm0" href="/blog/tags/release">release</a></li></ul></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Blog post page navigation"><a class="pagination-nav__link pagination-nav__link--next" href="/blog/2026/04/01/v0.7.0-alpha.2"><div class="pagination-nav__sublabel">Older Post</div><div class="pagination-nav__label">RBG v0.7.0-alpha.2 Released</div></a></nav></main><div class="col col--2"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#版本总结" class="table-of-contents__link toc-highlight">版本总结</a></li><li><a href="#新特性" class="table-of-contents__link toc-highlight">新特性</a><ul><li><a href="#节点预热提前准备镜像与运行环境" class="table-of-contents__link toc-highlight">节点预热：提前准备镜像与运行环境</a></li><li><a href="#原地调度让重建的-pod-复用节点缓存" class="table-of-contents__link toc-highlight">原地调度：让重建的 Pod 复用节点缓存</a></li><li><a href="#重启退避减少连续故障引发的反复重建" class="table-of-contents__link toc-highlight">重启退避：减少连续故障引发的反复重建</a></li><li><a href="#其他功能增强" class="table-of-contents__link toc-highlight">其他功能增强</a></li></ul></li><li><a href="#重大-bug-修复" class="table-of-contents__link toc-highlight">重大 bug 修复</a><ul><li><a href="#保持-v070-存量对象可读取" class="table-of-contents__link toc-highlight">保持 v0.7.0 存量对象可读取</a></li><li><a href="#避免配置未变却触发滚动更新" class="table-of-contents__link toc-highlight">避免配置未变却触发滚动更新</a></li><li><a href="#防止配置更新引发意外缩容" class="table-of-contents__link toc-highlight">防止配置更新引发意外缩容</a></li><li><a href="#修复单副本角色协同更新停滞" class="table-of-contents__link toc-highlight">修复单副本角色协同更新停滞</a></li><li><a href="#修复小副本数更新与缩容到零被拦截" class="table-of-contents__link toc-highlight">修复小副本数更新与缩容到零被拦截</a></li><li><a href="#让更新方式与宽限期按配置生效" class="table-of-contents__link toc-highlight">让更新方式与宽限期按配置生效</a></li><li><a href="#补齐-worker-pod-的-dns-身份" class="table-of-contents__link toc-highlight">补齐 worker Pod 的 DNS 身份</a></li></ul></li></ul></div></div></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Documentation</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/introduction">Introduction</a></li><li class="footer__item"><a class="footer__link-item" href="/docs/quick-start">Quick Start</a></li><li class="footer__item"><a class="footer__link-item" href="/docs/features/multiroles">Features</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://sgl-fru7574.slack.com/archives/C098X0LQZV5" target="_blank" rel="noopener noreferrer" class="footer__link-item">Slack<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://github.com/sgl-project/rbg/issues" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub Issues<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://github.com/sgl-project/sglang" target="_blank" rel="noopener noreferrer" class="footer__link-item">SGLang<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/blog">Blog</a></li><li class="footer__item"><a href="https://github.com/sgl-project/rbg" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 RoleBasedGroup. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>

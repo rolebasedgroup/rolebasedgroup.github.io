@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkrbg_website=self.webpackChunkrbg_website||[]).push([[9361],{7588:e=>{e.exports=JSON.parse('{"tags":[{"label":"release","permalink":"/blog/tags/release","count":2},{"label":"alpha","permalink":"/blog/tags/alpha","count":1},{"label":"announcement","permalink":"/blog/tags/announcement","count":1}]}')}}]);
