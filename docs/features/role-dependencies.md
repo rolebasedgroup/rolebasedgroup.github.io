@@ -209,4 +209,3 @@ A role is considered "ready" when its `status.roleStatuses[].readyReplicas` equa
 ## Examples
 
 - [Router + Workers Pattern](https://github.com/sgl-project/rbg/tree/main/examples/basic/rbg/dependency/role-dependencies.yaml)
-- [Multiple Dependency Patterns](https://github.com/sgl-project/rbg/tree/main/examples/basic/rbg/dependency/role-dependencies-2.yaml)

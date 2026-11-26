@@ -232,4 +232,4 @@ customComponentsPattern:
 
 ## Examples
 
-- [RoleBasedGroup with RoleTemplates](https://github.com/sgl-project/rbg/tree/main/examples/basic/rbg/role-temlate/rbg-with-roletemplates.yaml)
+- [RoleBasedGroup with RoleTemplates](https://github.com/sgl-project/rbg/tree/main/examples/basic/rbg/role-template/rbg-with-roletemplates.yaml)

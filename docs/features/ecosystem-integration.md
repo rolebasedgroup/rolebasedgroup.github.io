@@ -323,7 +323,7 @@ spec:
 - [Dynamo Aggregated Deployment](https://github.com/sgl-project/rbg/tree/main/examples/inference/ecosystem/dynamo/agg.yaml)
 - [Dynamo PD-Disaggregated](https://github.com/sgl-project/rbg/tree/main/examples/inference/ecosystem/dynamo/pd-disagg.yaml)
 - [Dynamo Multi-Node](https://github.com/sgl-project/rbg/tree/main/examples/inference/ecosystem/dynamo/agg-multi-nodes.yaml)
-- [Dynamo Infrastructure](https://github.com/sgl-project/rbg/tree/main/examples/inference/ecosystem/dynamo/) (etcd, nats, rbac)
+- [Dynamo Infrastructure](https://github.com/sgl-project/rbg/tree/main/examples/inference/ecosystem/dynamo/) (etcd, nats)
 
 ### Mooncake Examples
 
@@ -334,6 +334,5 @@ spec:
 
 ### Infrastructure Examples
 
-- [ETCD Deployment](https://github.com/sgl-project/rbg/tree/main/examples/inference/ecosystem/etcd.yaml)
-- [NATS Deployment](https://github.com/sgl-project/rbg/tree/main/examples/inference/ecosystem/nats.yaml)
-- [RBAC Configuration](https://github.com/sgl-project/rbg/tree/main/examples/inference/ecosystem/rbac.yaml)
+- [ETCD Deployment](https://github.com/sgl-project/rbg/tree/main/examples/inference/ecosystem/dynamo/etcd.yaml)
+- [NATS Deployment](https://github.com/sgl-project/rbg/tree/main/examples/inference/ecosystem/dynamo/nats.yaml)

@@ -68,6 +68,4 @@ If you already have Prometheus running, import the [SGLang Grafana dashboard](ht
 
 ## Example
 
-A complete `PodMonitor` example is available in the repository:
-
-[`podmonitor.yaml`](https://github.com/sgl-project/rbg/blob/main/examples/deprecated/v1alpha1/monitoring/podmonitor.yaml)
+The `PodMonitor` YAML above is a complete example; adjust the selector and metric port to match your workload.

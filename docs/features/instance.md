@@ -10,7 +10,7 @@ RBG v1alpha2 uses two native workload objects:
 - **RoleInstanceSet** — the workload controller object created for each role.
 - **RoleInstance** — one inference instance owned by that set.
 
-A `RoleInstance` owns one or more Pods and their headless Services. It is the unit that RBG uses for rollout, restart, readiness, and status aggregation.
+A `RoleInstance` owns one or more Pods. A role or RoleInstanceSet may also create a headless Service for stable DNS names. It is the unit that RBG uses for rollout, restart, readiness, and status aggregation.
 
 ## RoleInstanceSet
 
@@ -103,7 +103,7 @@ See [Update Strategy](/docs/features/update-strategy) for the rollout policy.
 
 ## Headless Services
 
-Each RoleInstance can expose a headless Service for stable DNS names. This is useful for leader/worker and custom-component patterns where the components need to discover each other.
+Components within a RoleInstance can reference a headless Service for stable DNS names. This is useful for leader/worker and custom-component patterns where the components need to discover each other.
 
 ## Relation to RoleBasedGroup
 

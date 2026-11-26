@@ -16,7 +16,7 @@ RBG uses a layered object model:
 3. **RoleInstance** — one inference instance for a role. A RoleInstance may own one Pod, a leader/worker Pod set, or a custom multi-component Pod group.
 4. **Pods** — the actual inference engines and their supporting sidecars.
 
-The controller also creates and manages several helper objects:
+RBG also integrates with the following objects:
 
 - **RoleBasedGroupScalingAdapter** — a scale target for HPA/KEDA/KPA that maps autoscaler decisions back to a specific role.
 - **CoordinatedPolicy** — a separate policy object that keeps multi-role rolling updates and scaling within a configured skew.
@@ -33,7 +33,7 @@ The RBG controller continuously reconciles the desired role topology:
    - **StandalonePattern** — one Pod per instance.
    - **LeaderWorkerPattern** — one leader and one or more workers per instance, typically for tensor-parallel inference.
    - **CustomComponentsPattern** — multiple named components with explicit ordering and discovery relationships.
-4. The RoleInstance controller creates and updates the owned Pods, headless Services, and per-instance status.
+4. The RoleInstance controller creates and updates the owned Pods and per-instance status; the RoleInstanceSet reconciler creates the headless Service for the role.
 5. The RBG controller aggregates role and instance status into the parent RoleBasedGroup, including readiness, rollout progress, restart budgets, and blocking conditions.
 6. Optional controllers apply cross-role CoordinatedPolicy rules, gang scheduling annotations, exclusive-topology constraints, port allocation, and engine runtime profile injection.
 

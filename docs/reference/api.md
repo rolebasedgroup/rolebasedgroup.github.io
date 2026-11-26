@@ -44,15 +44,19 @@ This document describes the API fields for RoleBasedGroup and related CRDs in `w
 | Field | Description |
 |-------|-------------|
 | `name` | string — unique role identifier (required) |
+| `labels` | map[string]string — labels applied to this role |
+| `annotations` | map[string]string — annotations applied to this role |
 | `replicas` | *int32 — desired replicas (default: 1) |
 | `dependencies` | []string — names of roles this role depends on |
 | `standalonePattern` | *StandalonePattern — single pod per instance |
 | `leaderWorkerPattern` | *LeaderWorkerPattern — leader + workers per instance |
 | `customComponentsPattern` | *CustomComponentsPattern — heterogeneous pod groups |
 | `rolloutStrategy` | *RolloutStrategy — update strategy configuration |
-| `minReadySeconds` | *int32 — minimum seconds before considered ready |
+| `minReadySeconds` | int32 — minimum seconds before considered ready |
 | `scalingAdapter` | *ScalingAdapter — external autoscaling config |
+| `servicePorts` | []corev1.ServicePort — service ports exposed by this role |
 | `engineRuntimes` | []EngineRuntime — runtime profiles to inject |
+| `podManagementPolicy` | PodManagementPolicyType — `OrderedReady` or `Parallel` |
 
 ## Workload Patterns
 
@@ -78,6 +82,7 @@ Leader + workers per instance (for tensor parallelism):
 | `templateRef` | *TemplateRef — reference to roleTemplate |
 | `leaderTemplatePatch` | runtime.RawExtension — patch for leader pod |
 | `workerTemplatePatch` | runtime.RawExtension — patch for worker pods |
+| `sharedServiceSelection` | *SharedServiceSelectionPolicy — `All` or `LeaderOnly` |
 
 ### CustomComponentsPattern
 
@@ -96,6 +101,8 @@ Heterogeneous pod groups per instance:
 | `name` | string — component identifier |
 | `size` | *int32 — number of pods for this component |
 | `serviceName` | string — headless service name (optional) |
+| `labels` | map[string]string — labels merged into every pod of this component |
+| `annotations` | map[string]string — annotations merged into every pod of this component |
 | `template` | PodTemplateSpec — pod template for this component |
 
 ## TemplateRef
@@ -130,7 +137,7 @@ Reusable pod template at RBG level:
 | `type` | RollingUpdateType — `RecreatePod` or `InPlaceIfPossible` |
 | `maxUnavailable` | intstr.IntOrString — max unavailable pods (default: 1) |
 | `maxSurge` | intstr.IntOrString — max extra pods during update (default: 0) |
-| `partition` | *int32 — update pods with ordinal >= partition |
+| `partition` | intstr.IntOrString — update pods with ordinal >= partition |
 | `inPlaceUpdateStrategy` | *InPlaceUpdateStrategy — in-place update config |
 
 ### InPlaceUpdateStrategy
@@ -280,19 +287,21 @@ wave-scoped `Restarting` guard semantics, backend support and upgrade/rollout co
 |-------|-------------|
 | `rollingUpdate` | *RollingUpdateCoordination — coordinated rolling update |
 | `scaling` | *ScalingCoordination — coordinated scaling |
+| `scheduling` | *SchedulingCoordination — coordinated scheduling, including gang scheduling |
 
 ### RollingUpdateCoordination
 
 | Field | Description |
 |-------|-------------|
-| `maxSkew` | string — max progress difference (e.g., "1%", "10%") |
-| `maxUnavailable` | string — max unavailable across all roles |
+| `maxSkew` | intstr.IntOrString — max progress difference, an absolute number or percentage |
+| `partition` | intstr.IntOrString — update partition boundary |
+| `maxUnavailable` | intstr.IntOrString — max unavailable across all roles, an absolute number or percentage |
 
 ### ScalingCoordination
 
 | Field | Description |
 |-------|-------------|
-| `maxSkew` | string — max deployment progress difference |
+| `maxSkew` | intstr.IntOrString — max scaling progress difference, an absolute number or percentage |
 | `progression` | ProgressionType — `OrderScheduled` or `OrderReady` |
 
 ## ClusterEngineRuntimeProfile
