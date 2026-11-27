@@ -1,31 +1,44 @@
 ---
 id: sglang-single
-title: SGLang Single Node
+title: SGLang Aggregated Single Node
 ---
 
-# SGLang Single Node Deployment
+# SGLang aggregated single-node deployment
 
-Deploy SGLang inference service on a single Kubernetes node.
+Use a `standalonePattern` role when one SGLang engine fits on one Kubernetes node.
 
 ```yaml
-apiVersion: rbgs.sgl-project.dev/v1
+apiVersion: workloads.x-k8s.io/v1alpha2
 kind: RoleBasedGroup
 metadata:
   name: sglang-single
 spec:
   roles:
     - name: inference
-      workloadType: StatefulSet
       replicas: 1
-      roleSpec:
+      standalonePattern:
         template:
           spec:
             containers:
               - name: sglang
-                image: lmsysorg/sglang:latest
+                image: lmsysorg/sglang:v0.5.9
+                command:
+                  - python3
+                  - -m
+                  - sglang.launch_server
+                  - --model-path
+                  - Qwen/Qwen3-0.6B
+                  - --host
+                  - 0.0.0.0
+                  - --port
+                  - "8001"
+                  - --tp-size
+                  - "1"
                 resources:
                   limits:
-                    nvidia.com/gpu: 1
+                    nvidia.com/gpu: "1"
 ```
 
-View the complete example: [sglang.yaml](https://github.com/sgl-project/rbg/blob/main/examples/single-node/sglang.yaml)
+The controller creates a `RoleInstanceSet` for the role and one `RoleInstance` per replica.
+
+Complete example: [`agg-standalone.yaml`](https://github.com/sgl-project/rbg/blob/main/examples/inference/agg-standalone.yaml)

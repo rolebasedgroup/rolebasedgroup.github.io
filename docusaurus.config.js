@@ -55,7 +55,7 @@ const config = {
         docs: {
           sidebarPath: "./sidebars.js",
           sidebarCollapsible: false,
-          editUrl: "https://github.com/sgl-project/rbg/tree/main/doc/",
+          editUrl: "https://github.com/rolebasedgroup/rolebasedgroup.github.io/edit/main/docs/",
         },
         blog: {
           showReadingTime: true,
@@ -156,11 +156,11 @@ const config = {
             items: [
               {
                 label: "Introduction",
-                to: "/docs/introduction",
+                to: "/",
               },
               {
                 label: "Quick Start",
-                to: "/docs/quick-start",
+                to: "/docs/quick_start",
               },
               {
                 label: "Features",

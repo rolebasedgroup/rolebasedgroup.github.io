@@ -41,7 +41,7 @@ spec:
             resources:
               limits:
                 nvidia.com/gpu: "1"`,
-    link: '/docs/examples/single-node/sglang',
+    link: '/docs/examples/single-node/sglang-single',
   },
   {
     id: 'agg-leader-worker',
@@ -80,7 +80,7 @@ spec:
             resources:
               limits:
                 nvidia.com/gpu: "1"`,
-    link: '/docs/examples/multi-nodes/sglang',
+    link: '/docs/examples/multi-nodes/sglang-multi',
   },
   {
     id: 'pd-standalone',
@@ -144,7 +144,7 @@ spec:
             resources:
               limits:
                 nvidia.com/gpu: "1"`,
-    link: '/docs/examples/pd-disagg/sglang',
+    link: '/docs/examples/pd-disagg/sglang-pd',
   },
   {
     id: 'pd-leader-worker',
@@ -210,7 +210,7 @@ spec:
                 resources:
                   limits:
                     nvidia.com/gpu: "1"`,
-    link: '/docs/examples/pd-disagg/sglang',
+    link: '/docs/examples/pd-disagg/sglang-pd',
   },
 ];
 

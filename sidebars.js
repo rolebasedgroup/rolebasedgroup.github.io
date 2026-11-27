@@ -10,21 +10,37 @@ const sidebars = {
       items: [
         'install',
         'quick_start',
+        'migration-v1alpha1-to-v1alpha2',
       ],
     },
     {
       type: 'category',
-      label: 'Features',
+      label: 'Core Concepts',
       collapsed: false,
       items: [
         'features/multiroles',
+        'features/patterns',
+        'features/role-dependencies',
+        'features/role-templates',
+        'features/instance',
+        'features/engine-runtime',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Operations',
+      collapsed: false,
+      items: [
         'features/autoscaler',
         'features/update-strategy',
+        'features/coordinated-policy',
         'features/failure-handling',
-        'features/gang-scheduling',
-        'features/monitoring',
-        'features/exclusive-topology',
+        'features/selective-scale-down',
         'features/revision',
+        'features/gang-scheduling',
+        'features/exclusive-topology',
+        'features/monitoring',
+        'features/ecosystem-integration',
       ],
     },
     {
@@ -32,8 +48,8 @@ const sidebars = {
       label: 'Reference',
       collapsed: false,
       items: [
-        'reference/variables',
         'reference/api',
+        'reference/variables',
       ],
     },
     {
@@ -44,17 +60,26 @@ const sidebars = {
         {
           type: 'category',
           label: 'Single Node',
-          items: ['examples/single-node/sglang-single', 'examples/single-node/vllm-single'],
+          items: [
+            'examples/single-node/sglang-single',
+            'examples/single-node/vllm-single',
+          ],
         },
         {
           type: 'category',
           label: 'Multi Node',
-          items: ['examples/multi-nodes/sglang-multi', 'examples/multi-nodes/vllm-multi'],
+          items: [
+            'examples/multi-nodes/sglang-multi',
+            'examples/multi-nodes/vllm-multi',
+          ],
         },
         {
           type: 'category',
           label: 'PD-Disaggregated',
-          items: ['examples/pd-disagg/sglang-pd', 'examples/pd-disagg/vllm-pd'],
+          items: [
+            'examples/pd-disagg/sglang-pd',
+            'examples/pd-disagg/vllm-pd',
+          ],
         },
       ],
     },

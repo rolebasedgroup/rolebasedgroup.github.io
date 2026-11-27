@@ -1,31 +1,36 @@
 ---
 id: vllm-single
-title: vLLM Single Node
+title: vLLM Aggregated Single Node
 ---
 
-# vLLM Single Node Deployment
+# vLLM aggregated single-node deployment
 
-Deploy vLLM inference service on a single Kubernetes node.
+vLLM uses the same v1alpha2 `standalonePattern` as other engines.
 
 ```yaml
-apiVersion: rbgs.sgl-project.dev/v1
+apiVersion: workloads.x-k8s.io/v1alpha2
 kind: RoleBasedGroup
 metadata:
   name: vllm-single
 spec:
   roles:
     - name: inference
-      workloadType: StatefulSet
       replicas: 1
-      roleSpec:
+      standalonePattern:
         template:
           spec:
             containers:
               - name: vllm
                 image: vllm/vllm-openai:latest
+                command:
+                  - vllm
+                  - serve
+                args:
+                  - Qwen/Qwen3-0.6B
+                  - --tensor-parallel-size=1
                 resources:
                   limits:
-                    nvidia.com/gpu: 1
+                    nvidia.com/gpu: "1"
 ```
 
-View the complete example: [vllm.yaml](https://github.com/sgl-project/rbg/blob/main/examples/single-node/vllm.yaml)
+See [`ecosystem-integration`](/docs/features/ecosystem-integration) for the vLLM integration details.
